@@ -1,0 +1,23 @@
+
+spring:
+    datasource:
+        url: "jdbc:mysql://localhost/sdjeans"
+        
+        username: root
+        password: password
+        #これにより.sqlがspring bootを再起動するたびに実行できるようになる　
+    # sql:
+    #     init:
+    #         mode: always
+    #         encoding: UTF-8
+logging:
+    level:
+        root : info
+    file:
+        name : app.log
+    logback:
+        rollingpolicy:
+            max-file-size : 1MB
+mybatis:
+    configuration:
+        map-underscore-to-camel-case: true
