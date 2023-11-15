@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.warehouse_app.controllers;
+package com.sdjeans.sdjeans_app.cashier_app.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
