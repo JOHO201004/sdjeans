@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
     <!-- <title th:text="#{site.title}"></title> -->
-    <title>ログイン画面</title>
+    <title>新規登録画面</title>
 
     <style>
         body {
@@ -26,10 +26,30 @@
 
 <body>
     <h1>新規登録画面</h1>
+
+    <form method="post" th:object="${registerForm}" th:action="@{/regi}">
+        <div class="col-3">
+                <label for="memberId" class="form-label">会員番号</label>
+                <input type="text" th:field="*{memberId}" class="form-control" id="memberId" placeholder="">
+        </div>
+        <div class="col-3">
+            <label for="name" class="form-label">名前</label>
+            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="">
+        </div>
+        <div class="col-3">
+            <label for="address" class="form-label">住所</label>
+            <input type="text" th:field="*{address}" class="form-control" id="address" placeholder="">
+        </div>
+        <div class="col-3">
+            <label for="pw" class="form-label">パスワード</label>
+            <input type="password" th:field="*{pw}" class="form-control" id="pw" placeholder="">
+        </div>
+        <div class="col-3">
+            <label for="cfmPw" class="form-label">確認パスワード</label>
+            <input type="password" th:field="*{cfmPw}" class="form-control" id="cfmPw" placeholder="">
+        </div>
+        <input type="submit" value="登録">
+    </form>
 </body>
-        <!-- 会員番号 -->
-        <!-- <input type="text" th:field="*{memberId}" class="form-control" id="memberId" placeholder=""> -->
-        <!-- パスワード -->
-        <!-- <input type="password" th:field="*{pw}" class="form-control" id="pw" placeholder=""> -->
-        <!-- <input type="submit" value="ログイン"> -->
+
 </html>
