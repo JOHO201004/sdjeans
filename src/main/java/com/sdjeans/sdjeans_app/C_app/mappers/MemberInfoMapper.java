@@ -1,7 +1,10 @@
 package com.sdjeans.sdjeans_app.C_app.mappers;
-import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+
+import com.sdjeans.sdjeans_app.C_app.Beans.MemberInfo;
 
 public class MemberInfoMapper implements RowMapper<MemberInfo> {
     @Override

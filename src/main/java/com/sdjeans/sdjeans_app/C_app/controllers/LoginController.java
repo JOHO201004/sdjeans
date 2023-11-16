@@ -31,9 +31,21 @@ public class LoginController {
     }
 
     @PostMapping("/regi")
-    public String inputRegisterMember(@ModelAttribute registerForm form,BindingResult result){
+    public String inputRegisterMember(@ModelAttribute registerForm form,BindingResult result,Model model){
         try{
+            if(!form.getPw().equals(form.getCfmPw())){
+                result.rejectValue("cfmPw", "password.mismatch", "パスワードと確認パスワードが一致しません");
+            }
+            if (result.hasErrors()) {
+                model.addAttribute("registerForm", form);
+                return "c_temp/reMember";
+            }
             memberInf memInf = new memberInf();
+            memInf.setMemberId(form.getMemberId());
+            memInf.setPw(form.getPw());
+            memInf.setAddress(form.getAddress());
+            memInf.setName(form.getName());
+            model.addAttribute("inputInf", memInf);
             return "c_temp/reMemberCfm";
         }catch(OptimisticLockingFailureException e){
             result.addError(new ObjectError("global", e.getMessage()));

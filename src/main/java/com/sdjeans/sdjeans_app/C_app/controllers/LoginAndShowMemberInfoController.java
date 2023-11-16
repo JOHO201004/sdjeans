@@ -5,6 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.sdjeans.sdjeans_app.C_app.Beans.MemberInfo;
+import com.sdjeans.sdjeans_app.C_app.mappers.MemberInfoMapper;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
