@@ -47,6 +47,7 @@
         <div class="col-3">
             <label for="cfmPw" class="form-label">確認パスワード</label>
             <input type="password" th:field="*{cfmPw}" class="form-control" id="cfmPw" placeholder="">
+            <div class="text-danger" th:if="${#fields.hasErrors('cfmPw')}" th:errors="${registerForm.cfmPw}"></div>
         </div>
         <input type="submit" value="登録">
     </form>

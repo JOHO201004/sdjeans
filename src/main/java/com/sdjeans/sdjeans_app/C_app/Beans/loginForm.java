@@ -1,4 +1,3 @@
-
 package com.sdjeans.sdjeans_app.C_app.Beans;
 
 import lombok.Data;
