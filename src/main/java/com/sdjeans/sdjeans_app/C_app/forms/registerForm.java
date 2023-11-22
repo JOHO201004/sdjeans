@@ -6,7 +6,7 @@ import lombok.Data;
 public class registerForm {
     
     //会員番号
-    private Integer memberId;
+    private String memberId;
     //パスワード
     private String pw;
     //確認パスワード

@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
     <!-- <title th:text="#{site.title}"></title> -->
-    <title>新規登録確認画面</title>
+    <title>買ったものリスト</title>
 
     <style>
         body {
@@ -25,22 +25,8 @@
 </head>
 
 <body>
-    <h1>新規登録確認画面</h1>
-    <form method="post" th:object="${inputInf}" th:action="@{/regiScs}">
-        <p>会員番号</p>
-        <p th:text="*{memberId}"></p>
-        <p>名前</p>
-        <p th:text="*{name}"></p>
-        <p>住所</p>
-        <p th:text="*{address}"></p>
-        <input type="hidden" th:field="*{memberId}" />
-        <input type="hidden" th:field="*{name}" />
-        <input type="hidden" th:field="*{address}" />
-        <input type="hidden" th:field="*{pw}" />
-        <input type="submit" value="登録">
-    </form>
-
-
+    <h1>買ったものリスト</h1>
+    
 </body>
 
 </html>
