@@ -95,10 +95,11 @@
     		<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<!-- 11/20　なんかセキュリティのやつ(UserDetailsとか) -->
+		<!-- バージョン管理必要かどうか不明のためコメントアウト-->
 		<dependency>
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-security</artifactId>
-    		<version>3.1.5</version>
+    		<!-- <version>3.1.5</version> -->
 		</dependency>
 
 
