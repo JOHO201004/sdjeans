@@ -12,20 +12,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.sdjeans.sdjeans_app.C_app.Beans.loginForm;
 import com.sdjeans.sdjeans_app.C_app.Beans.memberInf;
+import com.sdjeans.sdjeans_app.C_app.Entity.Member;
+import com.sdjeans.sdjeans_app.C_app.forms.LoginForm;
 import com.sdjeans.sdjeans_app.C_app.forms.registerForm;
 import com.sdjeans.sdjeans_app.C_app.services.accountService;
 
 @Controller
 // @Slf4j
 public class LoginController {
+
     @Autowired
     accountService accountService;
 
     @GetMapping("/login")
-    String getLogin(Model model) {
-        model.addAttribute("loginForm", new loginForm()); // loginFormをモデルに追加する
+    public String Login(Model model) {
+        model.addAttribute("LoginForm", new LoginForm()); // loginFormをモデルに追加する
         return "c_temp/login";
     }
+
     //登録画面へ遷移します
     @GetMapping("/regi")
     public String RegisterMember(Model model) {
@@ -63,6 +67,7 @@ public class LoginController {
         }
     }
 
+
     //登録成功画面へ遷移します
     @PostMapping("/regiScs")
     public String successRegisterMember(@ModelAttribute memberInf memInf,Model model,BindingResult result) {
@@ -75,5 +80,4 @@ public class LoginController {
             return "c_temp/reMember";
         }
     }
-
 }
