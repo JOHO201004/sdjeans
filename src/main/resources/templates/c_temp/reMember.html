@@ -27,7 +27,7 @@
 <body>
     <h1>新規登録画面</h1>
 
-    <form method="post" th:object="${registerForm}" th:action="@{/regi}">
+    <form method="post" th:object="${registerForm}" th:action="@{/regiCfm}">
         <div class="col-3">
                 <label for="memberId" class="form-label">会員番号</label>
                 <input type="text" th:field="*{memberId}" class="form-control" id="memberId" placeholder="">

@@ -27,7 +27,7 @@
 <body>
     <h1>ログイン画面</h1>
     <p>表示されたらOK</p>
-    <form  method="post" th:action="@{/login}" th:object="${loginForm}">
+    <form method="post" th:action="@{/login}" th:object="${loginForm}">
 
         <p>ID: <input type="text" th:field="*{memberId}" /></p>
         <p>Password: <input type="password" th:field="*{pw}" /></p>
