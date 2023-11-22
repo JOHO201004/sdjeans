@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class memberInf {
         //会員番号
-        private Integer memberId;
+        private String memberId;
         //パスワード
         private String pw;
         //名前

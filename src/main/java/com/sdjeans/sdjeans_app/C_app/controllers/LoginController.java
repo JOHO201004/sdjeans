@@ -2,8 +2,6 @@ package com.sdjeans.sdjeans_app.C_app.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.OptimisticLockingFailureException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +17,6 @@ import com.sdjeans.sdjeans_app.C_app.forms.LoginForm;
 import com.sdjeans.sdjeans_app.C_app.forms.registerForm;
 import com.sdjeans.sdjeans_app.C_app.services.accountService;
 
-
 @Controller
 // @Slf4j
 public class LoginController {
@@ -27,56 +24,29 @@ public class LoginController {
     @Autowired
     accountService accountService;
 
-
     @GetMapping("/login")
     public String Login(Model model) {
         model.addAttribute("LoginForm", new LoginForm()); // loginFormをモデルに追加する
         return "c_temp/login";
     }
 
-    // @GetMapping("/") // ルートURL ("/") に対するGETリクエストを処理します
-    // public String redirectToIndex() {
-    //     Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); // 現在のユーザーの認証情報を取得します
-    //     if (authentication != null && authentication.isAuthenticated()) { // ユーザーがログインしている場合
-    //         return "c_temp/home";  // "/index"にリダイレクトします
-    //     }
-    //     return "c_temp/login"; // ユーザーがログインしていない場合、"/login"にリダイレクトします
-    // }   
-
-    // @PostMapping("/home")
-    // public String Login(@ModelAttribute loginForm form, BindingResult result, Model model){
-    //     try{
-    //         if(form.getMemberId() == 1 && form.getPw().equals("p")){
-    //             System.out.println("a");
-    //             return "redirect:/c_temp/login";
-    //         }
-    //         if(result.hasErrors()){
-    //             model.addAttribute("registerForm", form);
-    //             return "redirect:/c_temp/login";
-    //         }
-    //     }catch(NullPointerException e){
-    //         return "c_temp/login";
-    //     }
-    //     return "redirect:/c_temp/login";
-    // }
-
-        @GetMapping("/home")
-        public String Home() {
-            return "c_temp/home";
-        }
-
-
-
-
+    //登録画面へ遷移します
     @GetMapping("/regi")
-    public String getRegisterMember(Model model) {
+    public String RegisterMember(Model model) {
         model.addAttribute("registerForm", new registerForm());
         return "c_temp/reMember";
     }
+
+    @GetMapping("/home")
+    public String home(){
+        return "c_temp/home";
+    }
+
+    //登録確認画面へ遷移します
     @PostMapping("/regiCfm")
-    public String inputRegisterMember(@ModelAttribute registerForm form,BindingResult result,Model model){
-        try{
-            if(!form.getPw().equals(form.getCfmPw())){
+    public String inputRegisterMember(@ModelAttribute registerForm form, BindingResult result, Model model) {
+        try {
+            if (!form.getPw().equals(form.getCfmPw())) {
                 result.rejectValue("cfmPw", "password.mismatch", "パスワードと確認パスワードが一致しません");
             }
             if (result.hasErrors()) {
@@ -91,20 +61,23 @@ public class LoginController {
             model.addAttribute("inputInf", memInf);
 
             return "c_temp/reMemberCfm";
-        }catch(OptimisticLockingFailureException e){
+        } catch (OptimisticLockingFailureException e) {
             result.addError(new ObjectError("global", e.getMessage()));
             return "c_temp/reMember";
         }
     }
-    // @PostMapping("/regiScs")
-    // public String successRegisterMember(BindingResult result,Model model){
-        
-    //     try{
-    //     accountService.InsertMember(memInf);
-    //             }catch(OptimisticLockingFailureException e){
-    //         result.addError(new ObjectError("global", e.getMessage()));
-    //         return "c_temp/reMember";
-    //     }
-    // }
-    
+
+
+    //登録成功画面へ遷移します
+    @PostMapping("/regiScs")
+    public String successRegisterMember(@ModelAttribute memberInf memInf,Model model,BindingResult result) {
+
+        try {
+            accountService.InsertMember(memInf);
+            return "c_temp/reMemberScs";
+        } catch (OptimisticLockingFailureException e) {
+            result.addError(new ObjectError("global", e.getMessage()));
+            return "c_temp/reMember";
+        }
+    }
 }

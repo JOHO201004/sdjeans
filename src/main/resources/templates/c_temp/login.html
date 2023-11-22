@@ -26,6 +26,7 @@
 
 <body>
     <h1>ログイン画面</h1>
+
     <div th:if="${param.error}">
         <p>IDもしくはパスワードが正しくありません。</p>
     </div>
@@ -37,6 +38,8 @@
 
         <p>ID: <input type="text" th:field="*{memberId}" required /></p>
         <p>Password: <input type="password" th:field="*{pw}" required/></p>
+
+
         <input type="submit" value="ログイン">
     </form>
 
