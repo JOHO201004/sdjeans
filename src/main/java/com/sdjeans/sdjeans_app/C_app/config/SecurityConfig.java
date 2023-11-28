@@ -23,13 +23,15 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorizeRequests -> // 認証リクエストを設定します
                 authorizeRequests
-                        .requestMatchers("/login", "/regi").permitAll() // "/login"と"/regi"へのリクエストは認証なしで許可します
+                        .requestMatchers("/login", "/regi","/regiCfm","regiScs","/purchaseH").permitAll() // "/login"と"/regi"へのリクエストは認証なしで許可します
                         .anyRequest().authenticated() // それ以外の全てのリクエストは認証が必要です
                 )
                 .formLogin(formLogin -> // フォームベースのログインを設定します
                 formLogin
                         .loginPage("/login") // ログインページのURLを設定します
                         .permitAll() // ログインページは認証なしで許可します
+                        .usernameParameter("memberId")
+                        .passwordParameter("password")
                 )
                 .logout(logout -> // ログアウトを設定します
                 logout

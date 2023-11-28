@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sdjeans.sdjeans_app.C_app.Beans.merchandise;
 import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistory;
 import com.sdjeans.sdjeans_app.C_app.mappers.purchaseHistoryMapper;
 
@@ -14,6 +15,10 @@ public class purchaseHistoryService {
     purchaseHistoryMapper purchaseHistoryMapper;
 
     public List<purchaseHistory> getPurchaseHistoriesById(String memberId){
-        return purchaseHistoryMapper.selectById(memberId);
+        return purchaseHistoryMapper.selectHisById(memberId);
+    }
+
+    public merchandise getMerchandisesById(Integer merchId){
+        return purchaseHistoryMapper.selectMerchById(merchId);
     }
 }

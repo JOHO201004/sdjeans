@@ -2,7 +2,7 @@
 <html lang="ja">
 
 <head>
-    <!-- Required meta tags -->
+    <!-- 必須のメタタグ -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -26,7 +26,27 @@
 
 <body>
     <h1>買ったものリスト</h1>
-    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">商品名</th>
+                <th scope="col">消費・賞味期限</th>
+                <th scope="col">数量</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr th:each="purchaseHistory : ${purchaseHistories}">
+                <form method="post" action="">
+                    <td th:text="${purchaseHistory.merchName}"></td>
+                    <td th:text="${#temporals.format(purchaseHistory.deadline, 'yyyy/MM/dd HH:mm:ss')}"></td>
+                    <td th:text="${purchaseHistory.quantity}"></td>
+                    <button type="submit" value="削除"></button>
+                </form>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="history.back()">戻る</button>
 </body>
 
 </html>
