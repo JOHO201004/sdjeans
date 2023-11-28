@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.sdjeans.sdjeans_app.C_app.Beans.loginForm;
 import com.sdjeans.sdjeans_app.C_app.Beans.memberInf;
-import com.sdjeans.sdjeans_app.C_app.Entity.Member;
 import com.sdjeans.sdjeans_app.C_app.forms.LoginForm;
 import com.sdjeans.sdjeans_app.C_app.forms.registerForm;
 import com.sdjeans.sdjeans_app.C_app.services.accountService;
@@ -25,7 +24,7 @@ public class LoginController {
     accountService accountService;
 
     @GetMapping("/login")
-    public String Login(Model model) {
+    public String Login(@ModelAttribute loginForm loginForm,Model model) {
         model.addAttribute("LoginForm", new LoginForm()); // loginFormをモデルに追加する
         return "c_temp/login";
     }

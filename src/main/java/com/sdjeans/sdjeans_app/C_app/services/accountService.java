@@ -56,7 +56,7 @@ public class accountService implements UserDetailsService {
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
         // Member member = userRepository.findById(id); // IDでユーザー検索
         Optional<Member> optionalMember = userRepository.findById(id);
-        if (optionalMember == null) {
+        if (optionalMember.isEmpty()) {
             throw new UsernameNotFoundException("ユーザーが見つかりませんでした。");
         }
 
