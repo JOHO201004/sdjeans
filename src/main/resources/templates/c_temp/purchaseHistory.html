@@ -32,17 +32,23 @@
                 <th scope="col">商品名</th>
                 <th scope="col">消費・賞味期限</th>
                 <th scope="col">数量</th>
+                <th scope="col">アクション</th> <!-- 追加 -->
             </tr>
         </thead>
         <tbody>
 
             <tr th:each="purchaseHistory : ${purchaseHistories}">
-                <form method="post" action="">
-                    <td th:text="${purchaseHistory.merchName}"></td>
-                    <td th:text="${#temporals.format(purchaseHistory.deadline, 'yyyy/MM/dd HH:mm:ss')}"></td>
-                    <td th:text="${purchaseHistory.quantity}"></td>
-                    <button type="submit" value="削除"></button>
-                </form>
+                <td th:text="${purchaseHistory.merchName}"></td>
+                <td th:text="${#temporals.format(purchaseHistory.deadline, 'yyyy/MM/dd HH:mm:ss')}"></td>
+                <td th:text="${purchaseHistory.quantity}"></td>
+                <td>
+                    <form method="post" th:action ="@{/purchaseHis}">
+                        <input type="hidden" name="memberId" th:value="${purchaseHistory.memberId}" />
+                        <input type="hidden" name="merchId" th:value="${purchaseHistory.merchId}" />
+                        <input type="hidden" name="deadline" th:value="${purchaseHistory.deadline}" />
+                        <button type="submit">削除</button>
+                    </form>
+                </td>
             </tr>
         </tbody>
     </table>
