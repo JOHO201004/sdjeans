@@ -96,11 +96,11 @@
 		</dependency>
 		<!-- 11/20　なんかセキュリティのやつ(UserDetailsとか) -->
 		<!-- バージョン管理必要かどうか不明のためコメントアウト-->
-		<dependency>
+		<!-- <dependency>
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-security</artifactId>
     		<version>3.1.5</version>
-		</dependency>
+		</dependency> -->
 		<!-- <dependency>
     		<groupId>org.springframework.security</groupId>
     		<artifactId>spring-security-web</artifactId>
