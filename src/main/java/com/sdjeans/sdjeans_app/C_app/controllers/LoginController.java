@@ -14,14 +14,14 @@ import com.sdjeans.sdjeans_app.C_app.Beans.loginForm;
 import com.sdjeans.sdjeans_app.C_app.Beans.memberInf;
 import com.sdjeans.sdjeans_app.C_app.forms.LoginForm;
 import com.sdjeans.sdjeans_app.C_app.forms.registerForm;
-import com.sdjeans.sdjeans_app.C_app.services.accountService;
+import com.sdjeans.sdjeans_app.C_app.services.registerService;
 
 @Controller
 // @Slf4j
 public class LoginController {
 
     @Autowired
-    accountService accountService;
+    registerService registerService;
 
     @GetMapping("/login")
     public String Login(@ModelAttribute loginForm loginForm,Model model) {
@@ -72,7 +72,7 @@ public class LoginController {
     public String successRegisterMember(@ModelAttribute memberInf memInf,Model model,BindingResult result) {
 
         try {
-            accountService.InsertMember(memInf);
+            registerService.InsertMember(memInf);
             return "c_temp/reMemberScs";
         } catch (OptimisticLockingFailureException e) {
             result.addError(new ObjectError("global", e.getMessage()));
