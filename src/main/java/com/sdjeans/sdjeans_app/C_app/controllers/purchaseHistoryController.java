@@ -37,7 +37,7 @@ public class purchaseHistoryController {
     }
     
 
-    @PostMapping("/purchaseHis")
+    @PostMapping("/purchaseH")
     public String deletePurchaseHistory(
         // @ModelAttribute purchaseHistoryMainKey purchaseHistoryMainKey,
             @RequestParam("memberId") String memberId,

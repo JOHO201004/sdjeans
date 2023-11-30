@@ -42,7 +42,7 @@
                 <td th:text="${#temporals.format(purchaseHistory.deadline, 'yyyy/MM/dd HH:mm:ss')}"></td>
                 <td th:text="${purchaseHistory.quantity}"></td>
                 <td>
-                    <form method="post" th:action ="@{/purchaseHis}">
+                    <form method="post" th:action ="@{/purchaseH}">
                         <input type="hidden" name="memberId" th:value="${purchaseHistory.memberId}" />
                         <input type="hidden" name="merchId" th:value="${purchaseHistory.merchId}" />
                         <input type="hidden" name="deadline" th:value="${purchaseHistory.deadline}" />
@@ -52,7 +52,9 @@
             </tr>
         </tbody>
     </table>
-    <button onclick="history.back()">戻る</button>
+    <form method="get" th:action="@{/login}">
+        <button type="submit">メニューへ</button>
+    </form>
 </body>
 
 </html>

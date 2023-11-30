@@ -19,6 +19,6 @@ public interface purchaseHistoryMapper {
     @Select("SELECT * FROM merch WHERE merch_id = #{merchId}")
     public merchandise selectMerchById(Integer merchId);
 
-    @Delete("DELETE FROM purchaseHistory WHERE member_id = #{memberId} AND merch_id #{merchId} AND deadline = #{deadline}")
+    @Delete("DELETE FROM purchaseHistory WHERE member_id = #{memberId} AND merch_id = #{merchId} AND deadline = #{deadline}")
     public int deletePurchaseHistory(purchaseHistoryMainKey purchaseHistoryMainKey);
 }
