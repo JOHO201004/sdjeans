@@ -43,10 +43,10 @@ public class LoginController {
 //         return "c_temp/reMember";
 //     }
 
-//     @GetMapping("/home")
-//     public String home(){
-//         return "c_temp/home";
-//     }
+    @GetMapping("/home")
+    public String home(Model model){
+        return "c_temp/home";
+    }
 
 //     //登録確認画面へ遷移します
 //     @PostMapping("/regiCfm")

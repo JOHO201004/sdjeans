@@ -2,23 +2,42 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="test.css">
-    <title>ホーム画面</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+    <!-- <title th:text="#{site.title}"></title> -->
+    <title>ログイン画面</title>
+
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="header">SDJeans
-    </div>
-    <div class="content">
-        <h1>ホーム画面</h1>
-        <button onclick="showMemberInfo()">会員情報</button><br><br>
-        <form method="get" th:action="@{/regi}">
-            <button type="submit">買ったものリスト</button><br><br>
-        </form>
-        <button onclick="showNearbyStores()">近くの店舗一覧</button>
-    </div>
-</body>
+    <h1>ホーム画面</h1>
 
+    <form method="get" th:action="@{/}">
+        <button type="submit">会員情報</button>
+    </form>
+    <form method="get" th:action="@{/purchaseH}">
+        <button type="submit">買ったものリスト</button>
+    </form>
+    <form method="get" th:action="@{/}">
+        <button type="submit">近くの店舗一覧</button>
+    </form>
+    <form method="get" th:action="@{/}">
+        <button type="submit">お知らせ</button>
+    </form>
+</body>
 </html>
