@@ -1,5 +1,6 @@
 package com.sdjeans.sdjeans_app.C_app.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Locale;
 
@@ -40,4 +41,13 @@ public class purchaseHistoryService {
         }
         return cnt;
     }
+
+    public List<purchaseHistory> sortPurchaseHistoriesByDeadline(Boolean sortOption, LocalDateTime deadline){
+        if(sortOption == true){
+            return purchaseHistoryMapper.sortAscPurchaseHistories(deadline);
+        }else{
+            return purchaseHistoryMapper.sortDescPurchaseHistories(deadline);
+        }
+    }
+
 }

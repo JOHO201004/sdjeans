@@ -31,6 +31,14 @@
             <tr>
                 <th scope="col">商品名</th>
                 <th scope="col">消費・賞味期限</th>
+                <form method="post" th:action="@{/purchaseH/sort}">
+                    <input type="hidden" name="memberId" th:value="${purchaseHistory.memberId}" />
+                    <input type="hidden" name="deadline" th:value="${purchaseHistory.deadline}" />
+                    <select name="sortOptionList" size="2" th:field="*{sortOption}">
+                        <option th:value="1">昇順</option>
+                        <option th:value="0">降順</option>
+                    </select>
+                </form>
                 <th scope="col">数量</th>
                 <th scope="col">アクション</th> <!-- 追加 -->
             </tr>
@@ -42,7 +50,7 @@
                 <td th:text="${#temporals.format(purchaseHistory.deadline, 'yyyy/MM/dd HH:mm:ss')}"></td>
                 <td th:text="${purchaseHistory.quantity}"></td>
                 <td>
-                    <form method="post" th:action ="@{/purchaseH}">
+                    <form method="post" th:action="@{/purchaseH/delete}">
                         <input type="hidden" name="memberId" th:value="${purchaseHistory.memberId}" />
                         <input type="hidden" name="merchId" th:value="${purchaseHistory.merchId}" />
                         <input type="hidden" name="deadline" th:value="${purchaseHistory.deadline}" />

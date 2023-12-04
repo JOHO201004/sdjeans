@@ -29,24 +29,23 @@ public class purchaseHistoryController {
 
     @GetMapping("/purchaseH")
     public String getPurchaseHistory(HttpSession session, Model model) {
-        // String memberId = (String)session.getAttribute("memberId");
-        String memberId = "1";
-        
+        String memberId = (String) session.getAttribute("memberId");
+        // String memberId = "1";
+
         model.addAttribute("purchaseHistories", makePurchaseHistoryOfView(memberId));
         return "c_temp/purchaseHistory";
     }
-    
 
-    @PostMapping("/purchaseH")
+    @PostMapping("/purchaseH/delete")
     public String deletePurchaseHistory(
-        // @ModelAttribute purchaseHistoryMainKey purchaseHistoryMainKey,
+            // @ModelAttribute purchaseHistoryMainKey purchaseHistoryMainKey,
             @RequestParam("memberId") String memberId,
             @RequestParam("merchId") Integer merchId,
             @RequestParam("deadline") LocalDateTime deadline,
             Model model) {
-                System.out.println("Controller reached!"); // ログの出力
+        System.out.println("Controller reached!"); // ログの出力
         // purchaseHistoryService.deletePurchaseHistory(purchaseHistoryMainKey);
-        purchaseHistoryService.deletePurchaseHistory(new purchaseHistoryMainKey(memberId,merchId,deadline));
+        purchaseHistoryService.deletePurchaseHistory(new purchaseHistoryMainKey(memberId, merchId, deadline));
         model.addAttribute("purchaseHistories", makePurchaseHistoryOfView(memberId));
         return "c_temp/purchaseHistory";
     }
@@ -73,5 +72,16 @@ public class purchaseHistoryController {
             purchasehistoryOfViewsList.add(p);
         }
         return purchasehistoryOfViewsList;
+    }
+
+    @PostMapping("/purchaseH/sort")
+    public String sortPurchaseHistories(
+            @RequestParam("memberId") String memberId,
+            @RequestParam("sortOption") Boolean sortOption,
+            @RequestParam("deadline") LocalDateTime deadline, Model model) {
+        System.out.println(deadline + "期限です");
+        purchaseHistoryService.sortPurchaseHistoriesByDeadline(sortOption, deadline);
+        model.addAttribute("purchaseHistories", makePurchaseHistoryOfView(memberId));
+        return "c_temp/purchaseHistory";
     }
 }
