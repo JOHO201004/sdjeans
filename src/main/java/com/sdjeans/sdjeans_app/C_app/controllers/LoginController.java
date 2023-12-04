@@ -39,7 +39,9 @@ public class LoginController {
     }
 
     @PostMapping("/login")
+
     public String LoggedInHome(@ModelAttribute LoginForm form, HttpSession session, BindingResult result, Model model) {
+
         try {
             model.addAttribute("LoginForm", new LoginForm());
             Member foundAccount = loginService.FindByMemberId(form);
