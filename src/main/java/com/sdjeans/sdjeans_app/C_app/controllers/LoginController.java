@@ -30,13 +30,18 @@ public class LoginController {
     LoginService loginService;
 
     @GetMapping("/login")
-    public String Login(@ModelAttribute LoginForm loginForm, Model model) {
+    public String Login(@ModelAttribute LoginForm loginForm, HttpSession session, Model model) {
         model.addAttribute("LoginForm", new LoginForm()); // loginFormをモデルに追加する
+        if(session.getAttribute("memberId") != null) {
+            return "c_temp/home";
+        }
         return "c_temp/login";
     }
 
     @PostMapping("/login")
-    public String LoggedInHome(@ModelAttribute LoginForm form,HttpSession session ,BindingResult result, Model model) {
+
+    public String LoggedInHome(@ModelAttribute LoginForm form, HttpSession session, BindingResult result, Model model) {
+
         try {
             model.addAttribute("LoginForm", new LoginForm());
             Member foundAccount = loginService.FindByMemberId(form);

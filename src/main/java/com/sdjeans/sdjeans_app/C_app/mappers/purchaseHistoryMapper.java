@@ -1,5 +1,6 @@
 package com.sdjeans.sdjeans_app.C_app.mappers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -24,6 +25,13 @@ public interface purchaseHistoryMapper {
     @Delete("DELETE FROM purchaseHistory WHERE member_id = #{memberId} AND merch_id = #{merchId} AND deadline = #{deadline}")
     public int deletePurchaseHistory(purchaseHistoryMainKey purchaseHistoryMainKey);
 
+    @Select("SELECT * FROM purchaseHistory ORDER BY deadline ASC")
+    public List<purchaseHistory> sortAscPurchaseHistories(LocalDateTime deadline);
+
+    @Select("SELECT * FROM purchaseHistory ORDER BY deadline DESC")
+    public List<purchaseHistory> sortDescPurchaseHistories(LocalDateTime deadline);
+
     @Update("UPDATE purchaseHistory SET quantity = #{quantity} WHERE member_id = #{memberId} AND merch_id = #{merchId} AND deadline = #{deadline}")
     public int updatePurchaseHistory(purchaseHistoryQuantityUpdate purchaseHistoryQuantityUpdate);
+
 }
