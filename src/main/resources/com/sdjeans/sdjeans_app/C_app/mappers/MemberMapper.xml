@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sdjeans.sdjeans_app.C_app.mappers.LoginMapper">
+<mapper namespace="com.sdjeans.sdjeans_app.C_app.mappers.accountMapper">
   <resultMap id="BaseResultMap" type="com.sdjeans.sdjeans_app.C_app.Entity.Member" />
-  <select id="findByMembername" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="findByMemberId" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT
         *
     FROM
         member
     WHERE
-        name = #{username,jdbcType=VARCHAR}
+        member_id = #{memberId}
   </select>
 </mapper>
