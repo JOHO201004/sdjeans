@@ -62,6 +62,11 @@
         <P>購入履歴</P>
         <input type="submit" value="購入履歴">
     </form>
+    <!-- これはログインしてからじゃないとみれないホームを表示する -->
+    <form method="get" th:action = "@{/home}">
+        <p>ホーム画面</p>
+        <input type="submit" value="ホーム画面">
+    </form>
 
 </body>
 <!-- 会員番号 -->

@@ -56,11 +56,13 @@ public class LoginController {
         }
     }
 
+
     // 登録画面へ遷移します
     @GetMapping("/regi")
     public String RegisterMember(Model model) {
         model.addAttribute("registerForm", new registerForm());
         return "c_temp/reMember";
+
     }
 
     @GetMapping("/home")
