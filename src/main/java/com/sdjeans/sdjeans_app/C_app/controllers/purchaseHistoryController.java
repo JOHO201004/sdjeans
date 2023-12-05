@@ -43,7 +43,7 @@ public class purchaseHistoryController {
             @RequestParam("merchId") Integer merchId,
             @RequestParam("deadline") LocalDateTime deadline,
             Model model) {
-        System.out.println("Controller reached!"); // ログの出力
+        System.out.println("delte" + memberId + merchId + deadline); // ログの出力
         // purchaseHistoryService.deletePurchaseHistory(purchaseHistoryMainKey);
         purchaseHistoryService.deletePurchaseHistory(new purchaseHistoryMainKey(memberId, merchId, deadline));
 

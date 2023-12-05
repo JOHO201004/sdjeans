@@ -42,20 +42,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="purchaseHistory : ${purchaseHistories}" th:style="${purchaseHistory.deadlineFlag} ? 'background-color: red' : ''">
+            <tr th:each="purchaseHistory : ${purchaseHistories}"
+                th:style="${purchaseHistory.deadlineFlag} ? 'background-color: red' : ''">
                 <td th:text="${purchaseHistory.merchName}"></td>
                 <td th:text="${#temporals.format(purchaseHistory.deadline, 'yyyy/MM/dd HH:mm:ss')}"></td>
                 <!-- 数量を変更できるようにinputフィールドを追加 -->
                 <td>
 
                     <form id="updateForm" method="post" th:action="@{/updateQuantity}">
-                        <input type="hidden" name="memberId" th:value="${purchaseHistory.memberId}" />
-                        <input type="hidden" name="merchId" th:value="${purchaseHistory.merchId}" />
-                        <input type="hidden" name="deadline" th:value="${purchaseHistory.deadline}" />
                         <!-- 数量を表示 -->
                         <!-- <span th:text="${purchaseHistory.quantity}"></span> -->
                         <!-- 数量を変更するinputフィールド -->
-                        <input type="number"  th:value="${purchaseHistory.quantity}" name="newQuantity"/>
+                        <input type="number" th:value="${purchaseHistory.quantity}" name="newQuantity" />
                         <input type="hidden" th:value="${purchaseHistory.memberId}" name="updateMemberId" />
                         <input type="hidden" th:value="${purchaseHistory.merchId}" name="updateMerchId">
                         <input type="hidden" th:value="${purchaseHistory.deadline}" name="updateDeadline">
@@ -67,7 +65,8 @@
                         <input type="hidden" name="memberId" th:value="${purchaseHistory.memberId}" />
                         <input type="hidden" name="merchId" th:value="${purchaseHistory.merchId}" />
                         <input type="hidden" name="deadline" th:value="${purchaseHistory.deadline}" />
-                        <button type="button" id="delete" onclick="confirmDelete()">削除</button>
+                        <!-- <button type="button" id="delete" onclick="confirmDelete()">削除</button> -->
+                        <input type="submit" value="削除">
                     </form>
                 </td>
             </tr>
