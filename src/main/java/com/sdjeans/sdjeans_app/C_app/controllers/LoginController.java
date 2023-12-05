@@ -115,5 +115,5 @@ public class LoginController {
             return "c_temp/reMember";
         }
     }
-    // あにょー、うしうし？
+    // 覚醒オーイシ突撃
 }
