@@ -42,7 +42,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="purchaseHistory : ${purchaseHistories}">
+            <tr th:each="purchaseHistory : ${purchaseHistories}" th:style="${purchaseHistory.deadlineFlag} ? 'background-color: red' : ''">
                 <td th:text="${purchaseHistory.merchName}"></td>
                 <td th:text="${#temporals.format(purchaseHistory.deadline, 'yyyy/MM/dd HH:mm:ss')}"></td>
                 <!-- 数量を変更できるようにinputフィールドを追加 -->
