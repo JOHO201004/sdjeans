@@ -1,13 +1,11 @@
 package com.sdjeans.sdjeans_app.C_app.mappers;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-
 
 import com.sdjeans.sdjeans_app.C_app.Beans.merchandise;
 import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistory;
