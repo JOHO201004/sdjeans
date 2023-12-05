@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+
 import com.sdjeans.sdjeans_app.C_app.Beans.merchandise;
 import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistory;
 import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistoryMainKey;
@@ -25,11 +26,11 @@ public interface purchaseHistoryMapper {
     @Delete("DELETE FROM purchaseHistory WHERE member_id = #{memberId} AND merch_id = #{merchId} AND deadline = #{deadline}")
     public int deletePurchaseHistory(purchaseHistoryMainKey purchaseHistoryMainKey);
 
-    @Select("SELECT * FROM purchaseHistory ORDER BY deadline ASC")
-    public List<purchaseHistory> sortAscPurchaseHistories(LocalDateTime deadline);
+    @Select("SELECT * FROM purchaseHistory WHERE member_id = #{memberId} ORDER BY deadline ASC")
+    public List<purchaseHistory> sortAscPurchaseHistories(String memberId);
 
-    @Select("SELECT * FROM purchaseHistory ORDER BY deadline DESC")
-    public List<purchaseHistory> sortDescPurchaseHistories(LocalDateTime deadline);
+    @Select("SELECT * FROM purchaseHistory WHERE member_id = #{memberId} ORDER BY deadline DESC")
+    public List<purchaseHistory> sortDescPurchaseHistories(String memberId);
 
     @Update("UPDATE purchaseHistory SET quantity = #{quantity} WHERE member_id = #{memberId} AND merch_id = #{merchId} AND deadline = #{deadline}")
     public int updatePurchaseHistory(purchaseHistoryQuantityUpdate purchaseHistoryQuantityUpdate);

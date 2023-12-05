@@ -42,11 +42,11 @@ public class purchaseHistoryService {
         }
         return cnt;
     }
-    public List<purchaseHistory> sortPurchaseHistoriesByDeadline(Boolean sortOption, LocalDateTime deadline){
+    public List<purchaseHistory> sortPurchaseHistoriesByDeadline(Boolean sortOption,String memberId){
         if(sortOption == true){
-            return purchaseHistoryMapper.sortAscPurchaseHistories(deadline);
+            return purchaseHistoryMapper.sortAscPurchaseHistories(memberId);
         }else{
-            return purchaseHistoryMapper.sortDescPurchaseHistories(deadline);
+            return purchaseHistoryMapper.sortDescPurchaseHistories(memberId);
         }
     }
 
