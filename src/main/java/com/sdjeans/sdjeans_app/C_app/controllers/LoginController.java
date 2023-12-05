@@ -17,6 +17,8 @@ import com.sdjeans.sdjeans_app.C_app.forms.registerForm;
 import com.sdjeans.sdjeans_app.C_app.services.LoginService;
 import com.sdjeans.sdjeans_app.C_app.services.registerService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 // @Slf4j
 public class LoginController {
@@ -28,17 +30,23 @@ public class LoginController {
     LoginService loginService;
 
     @GetMapping("/login")
-    public String Login(@ModelAttribute LoginForm loginForm, Model model) {
+    public String Login(@ModelAttribute LoginForm loginForm, HttpSession session, Model model) {
         model.addAttribute("LoginForm", new LoginForm()); // loginFormをモデルに追加する
+        if(session.getAttribute("memberId") != null) {
+            return "c_temp/home";
+        }
         return "c_temp/login";
     }
 
     @PostMapping("/login")
-    public String LoggedInHome(@ModelAttribute LoginForm form, BindingResult result, Model model) {
+
+    public String LoggedInHome(@ModelAttribute LoginForm form, HttpSession session, BindingResult result, Model model) {
+
         try {
             model.addAttribute("LoginForm", new LoginForm());
             Member foundAccount = loginService.FindByMemberId(form);
             if (loginService.CheckPw(foundAccount, form)) {
+                session.setAttribute("memberId", form.getMemberId());
                 return "c_temp/home";
             } else {
                 System.out.println(foundAccount.getPw()+ foundAccount.getId());
