@@ -15,29 +15,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
     <!-- <title th:text="#{site.title}"></title> -->
-    <title>ログイン画面</title>
+    <title>ホーム画面</title>
 
     <style>
         body {
             font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8f9fa;
+            padding: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .home-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 200px;
+            margin: auto;
+        }
+
+        .home-buttons button {
+            width: 100%;
+            height: 80px;
+            font-size: 18px;
         }
     </style>
 </head>
 
 <body>
-    <h1>ホーム画面</h1>
+    <div class="container">
+        <h1>ホーム画面</h1>
 
-    <form method="get" th:action="@{/}">
-        <button type="submit">会員情報</button>
-    </form>
-    <form method="get" th:action="@{/purchaseH}">
-        <button type="submit">買ったものリスト</button>
-    </form>
-    <form method="get" th:action="@{/}">
-        <button type="submit">近くの店舗一覧</button>
-    </form>
-    <form method="get" th:action="@{/}">
-        <button type="submit">お知らせ</button>
-    </form>
+        <div class="home-buttons">
+            <form method="get" th:action="@{/}">
+                <button type="submit" class="btn btn-primary">会員情報</button>
+            </form>
+            <form method="get" th:action="@{/purchaseH}">
+                <button type="submit" class="btn btn-success">買ったものリスト</button>
+            </form>
+            <form method="get" th:action="@{/}">
+                <button type="submit" class="btn btn-info">近くの店舗一覧</button>
+            </form>
+            <form method="get" th:action="@{/}">
+                <button type="submit" class="btn btn-warning">お知らせ</button>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>

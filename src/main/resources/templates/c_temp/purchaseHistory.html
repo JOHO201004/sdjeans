@@ -24,66 +24,64 @@
     </style>
 </head>
 
-<body>
-    <h1>買ったものリスト</h1>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">商品名</th>
-                <th scope="col">消費・賞味期限</th>
-                <form method="post" th:action="@{/purchaseH/sort}">
-                    <button name="sortOptionList" type="submit" value="0">降順</button>
-                </form>
-                <form method="post" th:action="@{/purchaseH/sort}">
-                    <button name="sortOptionList" type="submit" value="1">昇順</button>
-                </form>
-                <th scope="col">数量</th>
-                <th scope="col">アクション</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="purchaseHistory : ${purchaseHistories}"
-                th:style="${purchaseHistory.deadlineFlag} ? 'background-color: red' : ''">
-                <td th:text="${purchaseHistory.merchName}"></td>
-                <td th:text="${#temporals.format(purchaseHistory.deadline, 'yyyy/MM/dd HH:mm:ss')}"></td>
-                <!-- 数量を変更できるようにinputフィールドを追加 -->
-                <td>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="mb-4">買ったものリスト</h1>
+        <div class="btn-group" role="group" aria-label="Sort Options">
+            <form method="post" th:action="@{/purchaseH/sort}" class="d-inline">
+                <input type="hidden" name="sortOptionList" th:value="0" />
+                <button type="submit" class="btn btn-outline-secondary">降順</button>
+            </form>
+            <form method="post" th:action="@{/purchaseH/sort}" class="d-inline">
+                <input type="hidden" name="sortOptionList" th:value="1" />
+                <button type="submit" class="btn btn-outline-secondary">昇順</button>
+            </form>
+        </div>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">商品名</th>
+                    <th scope="col">消費・賞味期限</th>
+                    <th scope="col">数量</th>
+                    <th scope="col">アクション</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="purchaseHistory : ${purchaseHistories}"
+                    th:style="${purchaseHistory.deadlineFlag} ? 'background-color: red' : ''">
+                    <td th:text="${purchaseHistory.merchName}"></td>
+                    <td th:text="${#temporals.format(purchaseHistory.deadline, 'yyyy/MM/dd HH:mm:ss')}"></td>
+                    <!-- 数量を変更できるようにinputフィールドを追加 -->
+                    <td>
+                        <form id="updateForm" method="post" th:action="@{/updateQuantity}">
+                            <input type="number" th:value="${purchaseHistory.quantity}" name="newQuantity"
+                                class="form-control" />
+                            <input type="hidden" th:value="${purchaseHistory.memberId}" name="updateMemberId" />
+                            <input type="hidden" th:value="${purchaseHistory.merchId}" name="updateMerchId">
+                            <input type="hidden" th:value="${purchaseHistory.deadline}" name="updateDeadline">
+                            <button type="submit" class="btn btn-primary mt-2">更新</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form id="deleteForm" method="post" th:action="@{/purchaseH/delete}" class="d-inline">
+                            <input type="hidden" name="memberId" th:value="${purchaseHistory.memberId}" />
+                            <input type="hidden" name="merchId" th:value="${purchaseHistory.merchId}" />
+                            <input type="hidden" name="deadline" th:value="${purchaseHistory.deadline}" />
+                            <button type="submit" class="btn btn-danger">削除</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <form method="get" th:action="@{/home}">
+            <button type="submit" class="btn btn-secondary">メニューへ</button>
+        </form>
+    </div>
 
-                    <form id="updateForm" method="post" th:action="@{/updateQuantity}">
-                        <!-- 数量を表示 -->
-                        <!-- <span th:text="${purchaseHistory.quantity}"></span> -->
-                        <!-- 数量を変更するinputフィールド -->
-                        <input type="number" th:value="${purchaseHistory.quantity}" name="newQuantity" />
-                        <input type="hidden" th:value="${purchaseHistory.memberId}" name="updateMemberId" />
-                        <input type="hidden" th:value="${purchaseHistory.merchId}" name="updateMerchId">
-                        <input type="hidden" th:value="${purchaseHistory.deadline}" name="updateDeadline">
-                        <button type="submit">更新</button>
-                    </form>
-                </td>
-                <td>
-                    <form id="deleteForm" method="post" th:action="@{/purchaseH/delete}">
-                        <input type="hidden" name="memberId" th:value="${purchaseHistory.memberId}" />
-                        <input type="hidden" name="merchId" th:value="${purchaseHistory.merchId}" />
-                        <input type="hidden" name="deadline" th:value="${purchaseHistory.deadline}" />
-                        <!-- <button type="button" id="delete" onclick="confirmDelete()">削除</button> -->
-                        <input type="submit" value="削除">
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <form method="get" th:action="@{/home}">
-        <button type="submit">メニューへ</button>
-    </form>
-
-    <script>
-        function confirmDelete() {
-            var isConfirmed = confirm("このアイテムを削除しますか？");
-            if (isConfirmed) {
-                document.getElementById("deleteForm").submit();
-            }
-        }
-    </script>
+    <!-- Bootstrap JS、Popper.js、およびjQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-rhdQNhqWpgtf1jCTldOttzqFecTGKxIMJmwSwNb4bN8gvmFjjpOJELW5I3AblWb"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
