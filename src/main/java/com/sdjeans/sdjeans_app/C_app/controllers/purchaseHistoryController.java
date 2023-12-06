@@ -46,9 +46,9 @@ public class purchaseHistoryController {
         System.out.println("delte" + memberId + merchId + deadline); // ログの出力
         // purchaseHistoryService.deletePurchaseHistory(purchaseHistoryMainKey);
         purchaseHistoryService.deletePurchaseHistory(new purchaseHistoryMainKey(memberId, merchId, deadline));
-
+        
         model.addAttribute("purchaseHistories", makePurchaseHistoryOfView(memberId));
-        return "c_temp/purchaseHistory";
+        return "redirect:/purchaseH";
     }
 
     @PostMapping("/updateQuantity")
@@ -63,7 +63,7 @@ public class purchaseHistoryController {
                 .updatePurchaseHistory(new purchaseHistoryQuantityUpdate(memberId, merchId, deadline, quantity));
 
         model.addAttribute("purchaseHistories", makePurchaseHistoryOfView(memberId));
-        return "c_temp/purchaseHistory";
+        return "redirect:/purchaseH";
     }
 
     public static boolean isPast(LocalDateTime dateTime) {
@@ -89,7 +89,8 @@ public class purchaseHistoryController {
         }
         return purchasehistoryOfViewsList;
     }
-        public ArrayList<purchasehistoryOfView> makePurchaseHistoryOfView(String memberId,List<purchaseHistory> sortList) {
+
+    public ArrayList<purchasehistoryOfView> makePurchaseHistoryOfView(String memberId, List<purchaseHistory> sortList) {
         List<purchaseHistory> purchaseHistories = sortList;
         ArrayList<purchasehistoryOfView> purchasehistoryOfViewsList = new ArrayList<purchasehistoryOfView>();
         for (int i = 0; i < purchaseHistories.size(); i++) {
@@ -109,17 +110,18 @@ public class purchaseHistoryController {
     }
 
     @PostMapping("/purchaseH/sort")
-    public String sortPurchaseHistories(Model model,HttpSession session,@RequestParam("sortOptionList") String a ) {
+    public String sortPurchaseHistories(Model model, HttpSession session, @RequestParam("sortOptionList") String a) {
         String memberId = (String) session.getAttribute("memberId");
         boolean sortOption = true;
         System.out.println("ソート" + a);
         if (a.equals("1")) {
             sortOption = true;
-        }else{
+        } else {
             sortOption = false;
         }
 
-        model.addAttribute("purchaseHistories",makePurchaseHistoryOfView(memberId,purchaseHistoryService.sortPurchaseHistoriesByDeadline(sortOption,memberId)));
+        model.addAttribute("purchaseHistories", makePurchaseHistoryOfView(memberId,
+                purchaseHistoryService.sortPurchaseHistoriesByDeadline(sortOption, memberId)));
         return "c_temp/purchaseHistory";
     }
 }
