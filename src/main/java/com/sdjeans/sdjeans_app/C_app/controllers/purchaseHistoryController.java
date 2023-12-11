@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,8 +32,17 @@ public class purchaseHistoryController {
     @GetMapping("/purchaseH")
     public String getPurchaseHistory(HttpSession session, Model model) {
         String memberId = (String) session.getAttribute("memberId");
+        boolean sortOption = true;
+        if(session.getAttribute("order") == null){
+            System.out.println("初回");
+            session.setAttribute("order", true);
+        }else{
+            sortOption = (boolean) session.getAttribute("order");
+        }
 
-        model.addAttribute("purchaseHistories", makePurchaseHistoryOfView(memberId));
+        model.addAttribute("order", sortOption);
+        model.addAttribute("purchaseHistories", makePurchaseHistoryOfView(memberId,
+                purchaseHistoryService.sortPurchaseHistoriesByDeadline(sortOption, memberId)));
         return "c_temp/purchaseHistory";
     }
 
@@ -110,18 +120,13 @@ public class purchaseHistoryController {
     }
 
     @PostMapping("/purchaseH/sort")
-    public String sortPurchaseHistories(Model model, HttpSession session, @RequestParam("sortOptionList") String a) {
+    public String sortPurchaseHistories(Model model, HttpSession session, @RequestParam("sortOptionList") Boolean sortOption) {
         String memberId = (String) session.getAttribute("memberId");
-        boolean sortOption = true;
-        System.out.println("ソート" + a);
-        if (a.equals("1")) {
-            sortOption = true;
-        } else {
-            sortOption = false;
-        }
+        System.out.println("ソート" + sortOption);
 
+        session.setAttribute("order", sortOption); // ソート方法保存
         model.addAttribute("purchaseHistories", makePurchaseHistoryOfView(memberId,
                 purchaseHistoryService.sortPurchaseHistoriesByDeadline(sortOption, memberId)));
-        return "c_temp/purchaseHistory";
+        return "redirect:/purchaseH";
     }
 }

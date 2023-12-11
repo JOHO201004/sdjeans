@@ -29,14 +29,18 @@
         <h1 class="mb-4">買ったものリスト</h1>
         <div class="btn-group" role="group" aria-label="Sort Options">
             <form method="post" th:action="@{/purchaseH/sort}" class="d-inline">
-                <input type="hidden" name="sortOptionList" th:value="0" />
-                <button type="submit" class="btn btn-outline-secondary">降順</button>
+                <input type="hidden" name="sortOptionList" value="true"/>
+                <button type="submit" class="btn btn-outline-secondary"
+                th:style="${order} ? 'background-color: #6c757d' : ''">昇順</button>
             </form>
+            
             <form method="post" th:action="@{/purchaseH/sort}" class="d-inline">
-                <input type="hidden" name="sortOptionList" th:value="1" />
-                <button type="submit" class="btn btn-outline-secondary">昇順</button>
+                <input type="hidden" name="sortOptionList" value="false"/>
+                <button type="submit" class="btn btn-outline-secondary"
+                th:style="${order} ? '' : 'background-color: #6c757d'">降順</button>
             </form>
-        </div>
+
+        </div>                                                                                                                                                
         <table class="table table-striped mt-3">
             <thead>
                 <tr>
