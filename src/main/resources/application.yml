@@ -10,6 +10,10 @@ spring:
     #     init:
     #         mode: always
     #         encoding: UTF-8
+
+webPush:
+    fcm_api_key: "key"
+
 logging:
     level:
         root : info

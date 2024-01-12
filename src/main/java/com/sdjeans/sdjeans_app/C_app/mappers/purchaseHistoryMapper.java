@@ -32,5 +32,4 @@ public interface purchaseHistoryMapper {
 
     @Update("UPDATE purchaseHistory SET quantity = #{quantity} WHERE member_id = #{memberId} AND merch_id = #{merchId} AND deadline = #{deadline}")
     public int updatePurchaseHistory(purchaseHistoryQuantityUpdate purchaseHistoryQuantityUpdate);
-
 }

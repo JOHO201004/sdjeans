@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.sdjeans.sdjeans_app.C_app.Beans.memberInf;
 import com.sdjeans.sdjeans_app.C_app.Entity.Member;
-import com.sdjeans.sdjeans_app.C_app.Services.LoginService;
-import com.sdjeans.sdjeans_app.C_app.Services.registerService;
 import com.sdjeans.sdjeans_app.C_app.Forms.LoginForm;
 import com.sdjeans.sdjeans_app.C_app.Forms.registerForm;
+import com.sdjeans.sdjeans_app.C_app.Services.ExpireNotificationService;
+import com.sdjeans.sdjeans_app.C_app.Services.LoginService;
+import com.sdjeans.sdjeans_app.C_app.Services.registerService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -29,17 +30,19 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
+    @Autowired
+    ExpireNotificationService expireNotificationService;
+
     @GetMapping("/login")
     public String Login(@ModelAttribute LoginForm loginForm, HttpSession session, Model model) {
         model.addAttribute("LoginForm", new LoginForm()); // loginFormをモデルに追加する
         if(session.getAttribute("memberId") != null) {
-            return "c_temp/home";
+            return "redirect:/home";
         }
         return "c_temp/login";
     }
 
     @PostMapping("/login")
-
     public String LoggedInHome(@ModelAttribute LoginForm form, HttpSession session, BindingResult result, Model model) {
 
         try {
@@ -47,13 +50,13 @@ public class LoginController {
             Member foundAccount = loginService.FindByMemberId(form);
             if (loginService.CheckPw(foundAccount, form)) {
                 session.setAttribute("memberId", form.getMemberId());
-                return "c_temp/home";
+                session.setAttribute("null", foundAccount);
+                return "redirect:/home";
             } else {
                 System.out.println(foundAccount.getPw()+ foundAccount.getId());
                 System.out.println(form.getPw()+form.getMemberId());
                 model.addAttribute("bad", "パスワードかIDが違います");
                 // result.addError(new ObjectError("notFound", "アカウントが見つかりませんでした。"));
-                System.out.println("到達");
                 return "c_temp/login";
             }
         } catch (OptimisticLockingFailureException e) {
@@ -74,7 +77,8 @@ public class LoginController {
     }
 
     @GetMapping("/home")
-    public String home() {
+    public String home(HttpSession session) {
+        expireNotificationService.checkAndNotifyExpiration(session);
         return "c_temp/home";
     }
 
