@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.C_app.controllers;
+package com.sdjeans.sdjeans_app.C_app.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.OptimisticLockingFailureException;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.sdjeans.sdjeans_app.C_app.Beans.memberInf;
 import com.sdjeans.sdjeans_app.C_app.Entity.Member;
-import com.sdjeans.sdjeans_app.C_app.forms.LoginForm;
-import com.sdjeans.sdjeans_app.C_app.forms.registerForm;
-import com.sdjeans.sdjeans_app.C_app.services.LoginService;
-import com.sdjeans.sdjeans_app.C_app.services.registerService;
+import com.sdjeans.sdjeans_app.C_app.Services.LoginService;
+import com.sdjeans.sdjeans_app.C_app.Services.registerService;
+import com.sdjeans.sdjeans_app.C_app.Forms.LoginForm;
+import com.sdjeans.sdjeans_app.C_app.Forms.registerForm;
 
 import jakarta.servlet.http.HttpSession;
 

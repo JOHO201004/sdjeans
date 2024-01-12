@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.C_app.forms;
+package com.sdjeans.sdjeans_app.C_app.Forms;
 
 import lombok.Data;
 

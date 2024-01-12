@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.C_app.mappers;
+package com.sdjeans.sdjeans_app.C_app.Mappers;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

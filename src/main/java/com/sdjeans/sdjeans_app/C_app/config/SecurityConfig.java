@@ -1,3 +1,4 @@
+package com.sdjeans.sdjeans_app.C_app.Config;
 // package com.sdjeans.sdjeans_app.C_app.config;
 
 // import org.springframework.context.annotation.Bean;

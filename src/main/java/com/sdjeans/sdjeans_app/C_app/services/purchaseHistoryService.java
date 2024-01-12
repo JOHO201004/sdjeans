@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.C_app.services;
+package com.sdjeans.sdjeans_app.C_app.Services;
 
 import java.util.List;
 import java.util.Locale;
@@ -12,7 +12,7 @@ import com.sdjeans.sdjeans_app.C_app.Beans.merchandise;
 import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistory;
 import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistoryMainKey;
 import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistoryQuantityUpdate;
-import com.sdjeans.sdjeans_app.C_app.mappers.purchaseHistoryMapper;
+import com.sdjeans.sdjeans_app.C_app.Mappers.purchaseHistoryMapper;
 
 @Service
 public class purchaseHistoryService {
