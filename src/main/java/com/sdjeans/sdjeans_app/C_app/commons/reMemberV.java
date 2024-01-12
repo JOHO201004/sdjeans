@@ -1,9 +1,9 @@
-package com.sdjeans.sdjeans_app.C_app.commons;
+package com.sdjeans.sdjeans_app.C_app.Commons;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
-import com.sdjeans.sdjeans_app.C_app.forms.registerForm;
+import com.sdjeans.sdjeans_app.C_app.Forms.registerForm;
 
 public class reMemberV {
 
