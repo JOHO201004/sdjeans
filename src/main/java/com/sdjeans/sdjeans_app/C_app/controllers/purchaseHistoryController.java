@@ -41,6 +41,7 @@ public class purchaseHistoryController {
         }
 
         model.addAttribute("order", sortOption);
+        model.addAttribute("session_memberId", memberId);
         model.addAttribute("purchaseHistories", makePurchaseHistoryOfView(memberId,
                 purchaseHistoryService.sortPurchaseHistoriesByDeadline(sortOption, memberId)));
         return "c_temp/purchaseHistory";

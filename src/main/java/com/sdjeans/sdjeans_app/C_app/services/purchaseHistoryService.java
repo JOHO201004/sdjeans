@@ -1,5 +1,7 @@
 package com.sdjeans.sdjeans_app.C_app.services;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -8,6 +10,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
+import com.sdjeans.sdjeans_app.C_app.Beans.memberId;
 import com.sdjeans.sdjeans_app.C_app.Beans.merchandise;
 import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistory;
 import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistoryMainKey;
@@ -60,6 +63,22 @@ public class purchaseHistoryService {
             throw new RuntimeException(messageSource.getMessage("error.runtime", new String[] {"二件以上検出されました"} ,Locale.JAPANESE));
         }
 
+    }
+
+    // 期限通知
+    public ArrayList<String> notifyDeadline(String memberId){
+       List<purchaseHistory> purchaseHistoryList = purchaseHistoryMapper.selectHisById(memberId);
+       ArrayList<String> expireMerchNameList = new ArrayList<>();
+       String name;
+       int merchId;
+       for(int i = 0; purchaseHistoryList.size() > i; i++){
+            if(purchaseHistoryList.get(i).getDeadline().isBefore(LocalDateTime.now().plusDays(1))){
+                merchId = purchaseHistoryList.get(i).getMerchId();
+                name = purchaseHistoryMapper.selectMerchById(merchId).getMerchName();
+                expireMerchNameList.add(name);
+            }
+       }
+       return expireMerchNameList;
     }
 
 }
