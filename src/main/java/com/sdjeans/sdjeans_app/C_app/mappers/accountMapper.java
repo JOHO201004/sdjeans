@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.C_app.mappers;
+package com.sdjeans.sdjeans_app.C_app.Mappers;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Select;
 
 import com.sdjeans.sdjeans_app.C_app.Beans.memberInf;
 import com.sdjeans.sdjeans_app.C_app.Entity.Member;
-import com.sdjeans.sdjeans_app.C_app.forms.LoginForm;
+import com.sdjeans.sdjeans_app.C_app.Forms.LoginForm;
 
 @Mapper
 public interface accountMapper {

@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.C_app.controllers;
+package com.sdjeans.sdjeans_app.C_app.Controllers;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistory;
 import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistoryMainKey;
 import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistoryQuantityUpdate;
 import com.sdjeans.sdjeans_app.C_app.Beans.purchasehistoryOfView;
-import com.sdjeans.sdjeans_app.C_app.services.purchaseHistoryService;
+import com.sdjeans.sdjeans_app.C_app.Services.purchaseHistoryService;
 
 import jakarta.servlet.http.HttpSession;
 

@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.C_app.services;
+package com.sdjeans.sdjeans_app.C_app.Services;
 
 import java.util.Locale;
 
@@ -8,8 +8,8 @@ import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import com.sdjeans.sdjeans_app.C_app.Entity.Member;
-import com.sdjeans.sdjeans_app.C_app.forms.LoginForm;
-import com.sdjeans.sdjeans_app.C_app.mappers.accountMapper;
+import com.sdjeans.sdjeans_app.C_app.Forms.LoginForm;
+import com.sdjeans.sdjeans_app.C_app.Mappers.accountMapper;
 
 @Service
 public class LoginService {
