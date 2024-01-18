@@ -23,10 +23,6 @@
     <div class="container mt-5">
         <form method="post" th:object="${StockForm}" th:action="@{/check}" class="row g-3">
             <div class="col-md-3">
-                <label for="shopId" class="form-label">店舗ID</label>
-                <input type="text" th:field="*{shopId}" class="form-control" id="shopId" placeholder="">
-            </div>
-            <div class="col-md-3">
                 <label for="merchId" class="form-label">商品ID</label>
                 <input type="text" th:field="*{merchId}" class="form-control" id="merchId" placeholder="">
             </div>
@@ -46,7 +42,6 @@
         <table class="table mt-5">
             <thead>
                 <tr>
-                    <th scope="col">店舗Id</th>
                     <th scope="col">商品ID</th>
                     <th scope="col">期限</th>
                     <th scope="col">数量</th>
@@ -54,7 +49,6 @@
             </thead>
             <tbody>
                 <tr th:each="checkStock : ${checkStocks}">
-                    <td th:text="${checkStock.shopId}"></td>
                     <td th:text="${checkStock.merchId}"></td>
                     <td th:text="${#temporals.format(checkStock.deadline, 'yyyy/MM/dd HH:mm:ss')}"></td>
                     <td th:text="${checkStock.quantity}"></td>

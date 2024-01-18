@@ -6,6 +6,8 @@ import lombok.Data;
 public class employee {
     //従業員ID
     private String empId;
+    //店舗ID
+    private Integer shopId;
     //パスワード
     private String pw;
     //名前

@@ -16,6 +16,7 @@ import com.sdjeans.sdjeans_app.merchChecker_app.services.EmployeeService;
 
 import jakarta.servlet.http.HttpSession;
 
+
 @Controller
 // @Slf4j
 public class merchCheckerController {
@@ -25,7 +26,7 @@ public class merchCheckerController {
     @GetMapping("/login")
     public String Login(@ModelAttribute LoginForm loginForm, HttpSession session, Model model) {
         model.addAttribute("LoginForm", new LoginForm()); // loginFormをモデルに追加する
-        if (session.getAttribute("memberId") != null) {
+        if (session.getAttribute("employee") != null) {
             return "checker_temp/home";
         }
         return "checker_temp/login";
@@ -47,6 +48,13 @@ public class merchCheckerController {
         }
     }
 
+    @GetMapping("/reviewStock")
+    public String reviewStock(Model model, HttpSession session) {
+        LoginForm loginForm = (LoginForm)session.getAttribute("employee");
+        model.addAttribute("shopStocks", employeeService.getStock(loginForm));
+        return "checker_temp/reviewStock";
+    }
+    
     @GetMapping("/check")
     public String regiga(Model model) {
         model.addAttribute("StockForm", new StockForm());

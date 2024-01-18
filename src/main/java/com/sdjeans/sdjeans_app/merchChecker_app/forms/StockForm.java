@@ -6,8 +6,6 @@ import lombok.Data;
 
 @Data
 public class StockForm {
-    // 店舗ID
-    private Integer shopId;
     // 商品ID
     private Integer merchId;
     // 期限

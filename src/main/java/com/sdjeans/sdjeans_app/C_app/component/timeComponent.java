@@ -14,7 +14,7 @@ public class timeComponent {
 
     @Autowired
     runDiscountService runDiscountService;
-    @Scheduled(cron = "0 0 * * * *") // 16時になったら実行
+    @Scheduled(cron = "0 0 * * * *") 
     public void runDiscount() {
         Date date = new Date();
         SimpleDateFormat f = new SimpleDateFormat("HH");
@@ -24,9 +24,9 @@ public class timeComponent {
         
 
     }
-        @Scheduled(cron = "0 * * * * *") // 16時になったら実行
+        @Scheduled(cron = "0 * * * * *") 
     public void testesu() {
-        System.out.println("てすてすしました");
+        System.out.println("1分毎だよ～～～");
         runDiscountService.expired();
         runDiscountService.updatediscount();
         
