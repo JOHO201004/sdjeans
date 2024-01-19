@@ -14,43 +14,62 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
-    <!-- <title th:text="#{site.title}"></title> -->
     <title>新規登録画面</title>
 
     <style>
         body {
             font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8f9fa;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .registration-container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .registration-form {
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
-    <h1>新規登録画面</h1>
+    <div class="container registration-container">
+        <h1 class="text-center mb-4">新規登録画面</h1>
 
-    <form method="post" th:object="${registerForm}" th:action="@{/regiCfm}">
-        <div class="col-3">
-                <label for="memberId" class="form-label">会員番号</label>
-                <input type="text" th:field="*{memberId}" class="form-control" id="memberId" placeholder="">
-        </div>
-        <div class="col-3">
-            <label for="name" class="form-label">名前</label>
-            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="">
-        </div>
-        <div class="col-3">
-            <label for="address" class="form-label">住所</label>
-            <input type="text" th:field="*{address}" class="form-control" id="address" placeholder="">
-        </div>
-        <div class="col-3">
-            <label for="pw" class="form-label">パスワード</label>
-            <input type="password" th:field="*{pw}" class="form-control" id="pw" placeholder="">
-        </div>
-        <div class="col-3">
-            <label for="cfmPw" class="form-label">確認パスワード</label>
-            <input type="password" th:field="*{cfmPw}" class="form-control" id="cfmPw" placeholder="">
-            <div class="text-danger" th:if="${#fields.hasErrors('cfmPw')}" th:errors="${registerForm.cfmPw}"></div>
-        </div>
-        <input type="submit" value="登録">
-    </form>
+        <form class="registration-form" method="post" th:object="${registerForm}" th:action="@{/regiCfm}">
+            <div class="mb-3">
+                <label for="memberId" class="form-label">会員番号:</label>
+                <input type="text" th:field="*{memberId}" class="form-control" id="memberId" required />
+                <div class="text-danger" th:if="${#fields.hasErrors('memberId')}" th:errors="${registerForm.memberId}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">名前:</label>
+                <input type="text" th:field="*{name}" class="form-control" id="name" required />
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">住所:</label>
+                <input type="text" th:field="*{address}" class="form-control" id="address" required />
+            </div>
+            <div class="mb-3">
+                <label for="pw" class="form-label">パスワード:</label>
+                <input type="password" th:field="*{pw}" class="form-control" id="pw" required />
+            </div>
+            <div class="mb-3">
+                <label for="cfmPw" class="form-label">確認パスワード:</label>
+                <input type="password" th:field="*{cfmPw}" class="form-control" id="cfmPw" required />
+                <div class="text-danger" th:if="${#fields.hasErrors('cfmPw')}" th:errors="${registerForm.cfmPw}"></div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">登録</button>
+        </form>
+    </div>
 </body>
 
 </html>

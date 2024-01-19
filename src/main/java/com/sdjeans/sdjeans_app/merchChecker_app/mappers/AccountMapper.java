@@ -24,4 +24,7 @@ public interface AccountMapper {
 
     @Select("SELECT merch_name FROM merch WHERE merch_id = #{merchId}")
     public String findByMerchId(shopStock shopStock);
+
+    @Insert("INSERT INTO shopstock VALUES (#{shopId},#{merchId},#{deadline},#{quantity},#{discountRate})")
+    public int InsertShopstock(shopStock shopStock);
 }

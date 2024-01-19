@@ -2,9 +2,11 @@ package com.sdjeans.sdjeans_app.merchChecker_app.Beans;
 
 import java.time.LocalDateTime;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class shopStock {
     // 店舗ID
     private Integer shopId;
