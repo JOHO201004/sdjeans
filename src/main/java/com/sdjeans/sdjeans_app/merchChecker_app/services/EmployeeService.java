@@ -9,6 +9,7 @@ import com.sdjeans.sdjeans_app.merchChecker_app.Beans.employee;
 import com.sdjeans.sdjeans_app.merchChecker_app.Beans.shopStock;
 import com.sdjeans.sdjeans_app.merchChecker_app.Beans.shopStockPlusName;
 import com.sdjeans.sdjeans_app.merchChecker_app.forms.LoginForm;
+import com.sdjeans.sdjeans_app.merchChecker_app.forms.StockForm;
 import com.sdjeans.sdjeans_app.merchChecker_app.mappers.AccountMapper;
 
 @Service
@@ -48,6 +49,15 @@ public class EmployeeService {
         }
     
         return namedStock;
-        
+    }
+
+    public void addStock(ArrayList<StockForm> shopStocks,LoginForm loginForm){
+        employee employee = accountMapper.findByEmployeeId(loginForm);
+        int shopId = employee.getShopId();
+        for(int i = 0; shopStocks.size() > i;i++){
+            StockForm s = shopStocks.get(i);
+            shopStock shopStock = new shopStock(shopId,s.getMerchId(),s.getDeadline(),s.getQuantity(),0);
+            accountMapper.InsertShopstock(shopStock);
+        }
     }
 }

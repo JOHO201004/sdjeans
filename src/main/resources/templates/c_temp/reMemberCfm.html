@@ -14,33 +14,82 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
-    <!-- <title th:text="#{site.title}"></title> -->
-    <title>新規登録確認画面</title>
-
     <style>
         body {
             font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .confirmation-container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .confirmation-form {
+            margin-top: 20px;
+        }
+
+        .confirmation-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .confirmation-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .confirmation-value {
+            margin-bottom: 15px;
+        }
+
+        .hidden-input {
+            display: none;
+        }
+
+        .submit-button {
+            display: block;
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
-    <h1>新規登録確認画面</h1>
-    <form method="post" th:object="${inputInf}" th:action="@{/regiScs}">
-        <p>会員番号</p>
-        <p th:text="*{memberId}"></p>
-        <p>名前</p>
-        <p th:text="*{name}"></p>
-        <p>住所</p>
-        <p th:text="*{address}"></p>
-        <input type="hidden" th:field="*{memberId}" />
-        <input type="hidden" th:field="*{name}" />
-        <input type="hidden" th:field="*{address}" />
-        <input type="hidden" th:field="*{pw}" />
-        <input type="submit" value="登録">
-    </form>
+    <div class="container confirmation-container">
+        <h1 class="confirmation-title">新規登録確認画面</h1>
 
+        <form class="confirmation-form" method="post" th:object="${inputInf}" th:action="@{/regiScs}">
+            <div class="mb-3">
+                <label class="confirmation-label">会員番号:</label>
+                <div class="confirmation-value" th:text="*{memberId}"></div>
+            </div>
 
+            <div class="mb-3">
+                <label class="confirmation-label">名前:</label>
+                <div class="confirmation-value" th:text="*{name}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label class="confirmation-label">住所:</label>
+                <div class="confirmation-value" th:text="*{address}"></div>
+            </div>
+
+            <input type="hidden" th:field="*{memberId}" class="hidden-input" />
+            <input type="hidden" th:field="*{name}" class="hidden-input" />
+            <input type="hidden" th:field="*{address}" class="hidden-input" />
+            <input type="hidden" th:field="*{pw}" class="hidden-input" />
+
+            <button type="submit" class="btn btn-primary submit-button">登録</button>
+        </form>
+    </div>
 </body>
 
 </html>

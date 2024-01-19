@@ -49,7 +49,7 @@
     <div class="container login-container">
         <h1 class="text-center mb-4">従業員画面</h1>
 
-        <form class="login-form" method="post" th:action="@{/login}" th:object="${LoginForm}">
+        <form class="login-form" method="post" th:action="@{/empLogin}" th:object="${EmployeeLoginForm}">
             <div class="mb-3">
                 <label for="memberId" class="form-label">ID:</label>
                 <input type="text" th:field="*{empId}" class="form-control" id="empId" required />

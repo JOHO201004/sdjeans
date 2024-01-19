@@ -16,29 +16,32 @@ import com.sdjeans.sdjeans_app.merchChecker_app.services.EmployeeService;
 
 import jakarta.servlet.http.HttpSession;
 
-
 @Controller
 // @Slf4j
 public class merchCheckerController {
     @Autowired
     EmployeeService employeeService;
+    
 
-    @GetMapping("/login")
+    @GetMapping("/empLogin")
     public String Login(@ModelAttribute LoginForm loginForm, HttpSession session, Model model) {
-        model.addAttribute("LoginForm", new LoginForm()); // loginFormをモデルに追加する
+        model.addAttribute("EmployeeLoginForm", new LoginForm()); // loginFormをモデルに追加する
         if (session.getAttribute("employee") != null) {
+            if (employeeService.checkAdmin((LoginForm)session.getAttribute("employee"))) {
+                model.addAttribute("admin", true);
+            }
             return "checker_temp/home";
         }
         return "checker_temp/login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/empLogin")
     public String LoginCheckout(@ModelAttribute LoginForm loginForm, HttpSession session, BindingResult result,
             Model model) {
-        model.addAttribute("LoginForm", new LoginForm());
+        model.addAttribute("EmployeeLoginForm", new LoginForm());
         if (employeeService.checkLogin(loginForm)) {
             session.setAttribute("employee", loginForm);
-            if (employeeService.checkAdmin(loginForm)) {
+            if (employeeService.checkAdmin((LoginForm)session.getAttribute("employee"))) {
                 model.addAttribute("admin", true);
             }
             return "checker_temp/home";
@@ -48,13 +51,24 @@ public class merchCheckerController {
         }
     }
 
-    @GetMapping("/reviewStock")
-    public String reviewStock(Model model, HttpSession session) {
+    @PostMapping("/checkConfirm")
+    public String addStock(HttpSession session, Model model) {
+        Object attributeValue = session.getAttribute("checkStocksA");
         LoginForm loginForm = (LoginForm)session.getAttribute("employee");
-        model.addAttribute("shopStocks", employeeService.getStock(loginForm));
-        return "checker_temp/reviewStock";
+        if (attributeValue instanceof ArrayList<?>) {
+            ArrayList<StockForm> stockForms = (ArrayList<StockForm>) attributeValue;
+            employeeService.addStock(stockForms, loginForm);
+
+        }else{
+            System.out.println("ないよっ");
+            return "redirect:/check";
+        }
+        if (employeeService.checkAdmin((LoginForm)session.getAttribute("employee"))) {
+            model.addAttribute("admin", true);
+        }
+        return "checker_temp/home";
     }
-    
+
     @GetMapping("/check")
     public String regiga(Model model) {
         model.addAttribute("StockForm", new StockForm());
@@ -67,12 +81,23 @@ public class merchCheckerController {
         ArrayList<StockForm> shopStocks = new ArrayList<StockForm>();
         System.out.println(stockForm);
         if (session.getAttribute("checkStocksA") != null) {
-            shopStocks.add((StockForm) session.getAttribute("checkStocksA"));
+            ArrayList<StockForm> shopStocksA = (ArrayList<StockForm>) session.getAttribute("checkStocksA");
+            for(int i = 0;shopStocksA.size() > i;i++){
+                shopStocks.add(shopStocksA.get(i));
+            }
+
         }
         shopStocks.add(stockForm);
         System.out.println(shopStocks);
         session.setAttribute("checkStocksA", shopStocks);
         model.addAttribute("checkStocks", shopStocks);
         return "checker_temp/checkStock";
+    }
+
+    @GetMapping("/reviewStock")
+    public String reviewStock(Model model, HttpSession session) {
+        LoginForm loginForm = (LoginForm) session.getAttribute("employee");
+        model.addAttribute("shopStocks", employeeService.getStock(loginForm));
+        return "checker_temp/reviewStock";
     }
 }
