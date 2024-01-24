@@ -54,15 +54,17 @@ public class merchCheckerController {
     @PostMapping("/checkConfirm")
     public String addStock(HttpSession session, Model model) {
         Object attributeValue = session.getAttribute("checkStocksA");
-        LoginForm loginForm = (LoginForm)session.getAttribute("employee");
+        LoginForm loginForm = (LoginForm) session.getAttribute("employee");
+        ArrayList<StockForm> stockForms = new ArrayList<>();
+        
         if (attributeValue instanceof ArrayList<?>) {
-            ArrayList<StockForm> stockForms = (ArrayList<StockForm>) attributeValue;
+            stockForms = (ArrayList<StockForm>) attributeValue;
             employeeService.addStock(stockForms, loginForm);
-
-        }else{
+        } else {
             System.out.println("ないよっ");
             return "redirect:/check";
         }
+        
         if (employeeService.checkAdmin((LoginForm)session.getAttribute("employee"))) {
             model.addAttribute("admin", true);
         }
