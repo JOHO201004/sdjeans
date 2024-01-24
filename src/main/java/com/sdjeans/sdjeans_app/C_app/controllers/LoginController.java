@@ -19,6 +19,8 @@ import com.sdjeans.sdjeans_app.C_app.Services.LoginService;
 import com.sdjeans.sdjeans_app.C_app.Services.registerService;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 // @Slf4j
@@ -123,4 +125,9 @@ public class LoginController {
         }
     }
     // にょ、にょまれー
+    @GetMapping("/にょにょまれー")
+    public String nyo() {
+        return "oasobi_temp/follinSnow";
+    }
+    
 }
