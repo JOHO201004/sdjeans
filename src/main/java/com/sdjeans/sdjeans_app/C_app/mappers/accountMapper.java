@@ -19,5 +19,9 @@ public interface accountMapper {
     public Member FindByMemberId(LoginForm loginForm);
 
     @Select("SELECT * FROM MEMBER WHERE member_id = #{memberId}")
+    public Member MemberInfoShowId(String memberId);
+
+    @Select("SELECT * FROM MEMBER WHERE member_id = #{memberId}")
     public Member existMemberId(registerForm registerForm);
+
 }

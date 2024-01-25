@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会員情報表示</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      width: 60%;
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    h1 {
+      color: #3498db;
+      margin-bottom: 20px;
+      font-size: 3em; /* 追加: フォントサイズを大きく */
+    }
+    .member-info {
+      margin-top: 30px;
+      text-align: left;
+    }
+    .label {
+      font-weight: bold;
+      color: #555;
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1.7em; /* 追加: フォントサイズを大きく */
+    }
+    span {
+      color: #333;
+      font-weight: normal;
+      font-size: 1.5em; /* 追加: フォントサイズを大きく */
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>会員情報</h1>
+  
+  <div class="member-info">
+    <p class="label">メンバーID: <span th:text="${memberId}"></span></p>
+  
+  </div>
+
+  <div class="member-info">
+    <p class="label">名前: <span th:text="${member.name}"></span></p>
+ 
+  </div>
+
+  <div class="member-info">
+    <p class="label">住所: <span th:text="${member.address}"></span></p>
+ 
+  </div>
+</div>
+
+</body>
+</html>

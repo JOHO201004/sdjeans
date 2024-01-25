@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>近くの店舗一覧</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      width: 60%;
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    h1 {
+      color: #3498db;
+      margin-bottom: 20px;
+    }
+    .near-stores {
+      margin-top: 30px;
+      text-align: left;
+    }
+    .store-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .store-item button {
+  margin-left: auto;
+  padding: 10px 20px;
+  background-color: #3498db; /* ボタンの背景色 */
+  color: #ffffff; /* ボタンの文字色 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* ホバー時のアニメーション */
+}
+
+.store-item button:hover {
+  background-color: #2980b9; /* ホバー時の背景色 */
+}
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>近くの店舗一覧</h1>
+  
+  <div class="near-stores">
+    <div th:each="store : ${nearStores}" class="store-item">
+      <form method="post" th:action="@{/selectShopShowItem}" th:object="${selectShopForm}">
+        <input type="hidden" name="shopId" th:value="${store.shopId}" />
+        <p>店舗ID: <span th:text="${store.shopId}"></span></p>
+        <p>店舗名: <span th:text="${store.shopName}"></span></p>
+        <p>住所: <span th:text="${store.address}"></span></p><br>
+        <button type="submit" class="btn btn-primary">店舗在庫</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>店舗商品在庫一覧</title>
+  <style>
+    h4 {
+  text-align: left; /* 左寄せに変更 */
+}
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      width: 60%;
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    h1 {
+      color: #3498db;
+      margin-bottom: 20px;
+    }
+    .stock-list {
+      margin-top: 30px;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    h4{
+      margin-left: auto;
+    }
+    
+  </style>
+</head>
+<body>
+  
+<div class="container">
+  <h4><span th:text="${shopName}"></h4>
+  <h1>店舗商品在庫一覧</h1>
+  
+  <div class="stock-list">
+    <h2>在庫リスト</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>商品ID</th>
+          <th>有効期限</th>
+          <th>数量</th>
+          <th>割引率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 商品在庫リストを表示する部分 -->
+        <tr th:each="item : ${shopItems}" class="stock-item">
+          <td th:text="${item.merchId}"></td>
+          <td th:text="${item.deadline}"></td>
+          <td th:text="${item.quantity}"></td>
+          <td th:text="${item.discountRate}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
+
