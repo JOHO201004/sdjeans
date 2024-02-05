@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登録ページ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>登録ページへようこそ</h2>
+
+    <!-- 会員IDとショップ在庫のフォームを表示 -->
+    <form method="post" th:action="@{/regiLogic}">
+        <!-- 会員IDのフォームフィールド -->
+        <label for="memberId">お客様のIDを入力してください:</label>
+        <input type="text" id="memberId" name="memberId" required/>
+
+        <!-- ショップ在庫テーブル -->
+        <div>
+            <h3>ショップ在庫</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ショップID</th>
+                        <th>商品ID</th>
+                        <th>消費期限</th>
+                        <th>数量</th>
+                        <th>割引率</th>
+                        <th>購入個数</th>
+                        <!-- 必要に応じて他のテーブルヘッダーを追加 -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- shopStockを繰り返し処理し、各商品の情報をチェックボックスで表示 -->
+                    <tr th:each="product, rowStat : ${shopStock}">
+                        <td th:text="${product.shopId}"></td>
+                        <td th:text="${product.merchId}"></td>
+                        <td th:text="${product.deadline}"></td>
+                        <td th:text="${product.quantity}"></td>
+                        <td th:text="${product.discountRate}"></td>
+                        <td>
+                     
+       <input type="number" th:id="'select_' + ${rowStat.index}" th:name="'selectedStocks[' + ${rowStat.index} + '].quantity'"
+       th:value="0" th:max="${product.quantity}" min="0" />
+
+                        </td>
+                        <!-- 必要に応じて他のテーブルセルを追加 -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 送信ボタン -->
+        <button type="submit">送信</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        .login-form label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        .login-form button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2 style="text-align: center;">従業員ログイン画面</h2>
+    <form class="login-form" method="post" th:action="@{/empLogin}" th:object="${loginForm}">
+        <!-- ログインフォームの要素 -->
+        <label for="empId">従業員ID:</label>
+        <input type="text" id="empId" name="empId" th:field="*{empId}" required/>
+    
+        <label for="password">パスワード:</label>
+        <input type="password" id="password" name="password" th:field="*{password}" required/>
+    
+        <button type="submit">ログイン</button>
+    </form>
+</div>
+
+</body>
+</html>
