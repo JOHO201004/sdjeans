@@ -28,14 +28,9 @@ public class runDiscountService {
         List<discountChange> shopstocks = runDiscountMapper.selectDiscountWakaraxn();
         for (int i = 0; shopstocks.size() > i; i++) {
             discountChange shopChange = shopstocks.get(i);
-            System.out.println(LocalDateTime.now().plusHours((long) shopChange.getDiscountCriteria()) + "ひいた時間です");
-            System.out.println((long) shopChange.getDiscountCriteria() + "ひく時間です");
-            System.out.println(shopstocks.get(i).getDeadline() + "期限");
-            // System.out.println(shopstocks.get(i).getDeadline().minusHours((long) shopChange.getDiscountCriteria())
-            // .isAfter(LocalDateTime.now()) + "論理値アフター");
-            // System.out.println(shopstocks.get(i).getDeadline().minusHours((long) shopChange.getDiscountCriteria())
-            // .isBefore(LocalDateTime.now()) + "論理値ビフォー");
-            // if(LocalDateTime.now().plusHours((long)shopChange.getDiscountCriteria()).isBefore(shopstocks.get(i).getDeadline())){
+            // System.out.println(LocalDateTime.now().plusHours((long) shopChange.getDiscountCriteria()) + "ひいた時間です");
+            // System.out.println((long) shopChange.getDiscountCriteria() + "ひく時間です");
+            // System.out.println(shopstocks.get(i).getDeadline() + "期限");
             if (shopstocks.get(i).getDeadline().minusHours((long) shopChange.getDiscountCriteria())
                     .isBefore(LocalDateTime.now())) {
                 // 12-2 < 11

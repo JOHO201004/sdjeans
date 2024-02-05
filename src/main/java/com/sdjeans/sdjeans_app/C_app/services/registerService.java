@@ -8,15 +8,17 @@ import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import com.sdjeans.sdjeans_app.C_app.Beans.memberInf;
+import com.sdjeans.sdjeans_app.C_app.Forms.registerForm;
 import com.sdjeans.sdjeans_app.C_app.Mappers.accountMapper;
 
 @Service
 public class registerService {
-        @Autowired
+    @Autowired
     accountMapper accountMapper; // 断念
-        @Autowired
+    @Autowired
     MessageSource messageSource;
-        public int InsertMember(memberInf memberInf) {
+
+    public int InsertMember(memberInf memberInf) {
 
         int cnt = accountMapper.InsertMember(memberInf);
         if (cnt == 0) {
@@ -30,4 +32,14 @@ public class registerService {
         }
         return cnt;
     }
+
+    public boolean existMemberId(registerForm registerForm){
+        if (accountMapper.existMemberId(registerForm) == null) {
+            System.out.println("NULLだよ");
+            return false;
+        }else{
+            return true;
+        }
+    }
+
 }

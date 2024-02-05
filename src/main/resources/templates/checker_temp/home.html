@@ -4,10 +4,6 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-
-    <!-- manifest.json を指定 -->
-    <!-- <link rel="manifest" href="manifest.json"> -->
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -54,26 +50,21 @@
         <h1>ホーム画面</h1>
 
         <div class="home-buttons">
-            <form method="get" th:action="@{/memberInfoShow}">
-                <button type="submit" class="btn btn-primary">会員情報</button>
+            <form method="get" th:action="@{/check}">
+                <button type="submit" class="btn btn-primary">在庫☑</button>
             </form>
-            <form method="get" th:action="@{/purchaseH}">
-                <button type="submit" class="btn btn-success">買ったものリスト</button>
-            </form>
-            <form method="get" th:action="@{/showNearStores}">
-                <button type="submit" class="btn btn-info">近くの店舗一覧</button>
-            </form>
-            <!-- <form method="get" th:action="@{/}">
-                <button type="submit" class="btn btn-warning">お知らせ</button>
-            </form> -->
+            <!-- <div th:if="${admin}">
+                <form method="get" th:action="@{/employeeManagement}">
+                    <button type="submit" class="btn btn-success">従業員管理</button>
+                </form>
+            </div> -->
+            <div>
+                <form method="get" th:action="@{/reviewStock}">
+                    <button type="submit" class="btn btn-info">在庫確認</button>
+                </form>
+            </div>
         </div>
     </div>
-
-    <!-- <div id="notification" hidden="true"></div> -->
-    <script th:src="@{/js/setNotification.js}" type=text/javascript></script>
-    <script th:src="@{//code.jquery.com/jquery-3.6.1.min.js}"></script>
-    <script th:src="@{//cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js}"></script>
-    <script th:src="@{/js/main.js}" type=text/javascript></script>
 </body>
 
 </html>

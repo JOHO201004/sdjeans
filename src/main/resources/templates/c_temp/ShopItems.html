@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>店舗商品在庫一覧</title>
+  <style>
+    h4 {
+      text-align: left; /* 左寄せに変更 */
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      width: 60%;
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    h1 {
+      color: #3498db;
+      margin-bottom: 20px;
+    }
+    .stock-list {
+      margin-top: 30px;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    h4 {
+      margin-left: auto;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: flex-end; /* ボタンを右に寄せる */
+      margin-top: 20px;
+    }
+    .btn {
+      margin: 0 5px;
+    }
+    /* ボタンのスタイル追加 */
+    .btn-outline-secondary {
+      color: #6c757d;
+      border-color: #6c757d;
+    }
+    .btn-outline-secondary:hover {
+      color: #fff;
+      background-color: #6c757d;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h4><span th:text="${shopName}"></span></h4>
+  <h1>店舗商品在庫一覧</h1>
+
+  <div class="stock-list">
+    <h2>在庫リスト</h2>
+    <div class="btn-group" role="group" aria-label="Sort Options">
+      <form method="post" th:action="@{/ShopItemsSort}" class="d-inline">
+        <input type="hidden" name="sortType" value="merch"/>
+        <button type="submit" class="btn btn-outline-secondary"
+                th:style="${order == 0} ? 'background-color: #6c757d' : ''">商品名順</button>
+    </form>
+
+      <form method="post" th:action="@{/ShopItemsSort}" class="d-inline">
+        <input type="hidden" name="sortType" value="deadline"/>
+        <button type="submit" class="btn btn-outline-secondary"
+                th:style="${order == 1} ? 'background-color: #6c757d' : ''">賞味期限が古い順</button>
+      </form>
+
+      <form method="post" th:action="@{/ShopItemsSort}" class="d-inline">
+        <input type="hidden" name="sortType" value="discount"/>
+        <button type="submit" class="btn btn-outline-secondary"
+                th:style="${order == 2} ? 'background-color: #6c757d' : ''">割引率が高い順</button>
+      </form>
+    </div>
+
+    <table id="stock-table">
+      <thead>
+        <tr>
+          <th>
+            商品ID
+          </th>
+          <th>
+            賞味期限
+          </th>
+          <th>
+            数量
+          </th>
+          <th>
+            値段
+          </th>
+          <th>
+            割引率
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 商品在庫リストを表示する部分 -->
+        <tr th:each="item : ${shopItems}" class="stock-item">
+          <td th:text="${item.merchId}"></td>
+          <td th:text="${item.deadline}"></td>
+          <td th:text="${item.quantity}"></td>
+          <td th:text="${item.discountRate}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

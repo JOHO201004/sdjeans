@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+    <title>在庫登録画面</title>
+
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            padding: 50px;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+
+        table {
+            margin-top: 20px;
+            background-color: #fff;
+        }
+
+        th {
+            background-color: #007bff;
+            color: black;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #cce5ff;
+        }
+
+        button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-5">在庫確認</h1>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">商品ID</th>
+                    <th scope="col">商品名</th>
+                    <th scope="col">期限</th>
+                    <th scope="col">数量</th>
+                    <th scope="col">割引率</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="shopStock : ${shopStocks}">
+                    <td th:text="${shopStock.merchId}"></td>
+                    <td th:text="${shopStock.merchName}"></td>
+                    <td th:text="${#temporals.format(shopStock.deadline, 'yyyy/MM/dd HH:mm:ss')}"></td>
+                    <td th:text="${shopStock.quantity}"></td>
+                    <td th:text="${shopStock.discountRate} + '%'"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-primary" onclick="window.history.back()">戻る</button>
+    </div>
+</body>
+
+</html>

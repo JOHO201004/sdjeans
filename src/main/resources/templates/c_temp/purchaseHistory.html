@@ -59,7 +59,7 @@
                     <td>
                         <form id="updateForm" method="post" th:action="@{/updateQuantity}">
                             <input type="number" th:value="${purchaseHistory.quantity}" name="newQuantity"
-                                class="form-control" />
+                                class="form-control" oninput="this.value = Math.max(1, this.value)" />
                             <input type="hidden" th:value="${purchaseHistory.memberId}" name="updateMemberId" />
                             <input type="hidden" th:value="${purchaseHistory.merchId}" name="updateMerchId">
                             <input type="hidden" th:value="${purchaseHistory.deadline}" name="updateDeadline">

@@ -19,6 +19,8 @@ import com.sdjeans.sdjeans_app.C_app.Services.LoginService;
 import com.sdjeans.sdjeans_app.C_app.Services.registerService;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 // @Slf4j
@@ -41,7 +43,7 @@ public class LoginController {
     @GetMapping("/login")
     public String Login(@ModelAttribute LoginForm loginForm, HttpSession session, Model model) {
         model.addAttribute("LoginForm", new LoginForm()); // loginFormをモデルに追加する
-        if(session.getAttribute("memberId") != null) {
+        if (session.getAttribute("memberId") != null) {
             return "redirect:/home";
         }
         return "c_temp/login";
@@ -58,8 +60,8 @@ public class LoginController {
                 session.setAttribute("null", foundAccount);
                 return "redirect:/home";
             } else {
-                System.out.println(foundAccount.getPw()+ foundAccount.getId());
-                System.out.println(form.getPw()+form.getMemberId());
+                System.out.println(foundAccount.getPw() + foundAccount.getId());
+                System.out.println(form.getPw() + form.getMemberId());
                 model.addAttribute("bad", "パスワードかIDが違います");
                 // result.addError(new ObjectError("notFound", "アカウントが見つかりませんでした。"));
                 return "c_temp/login";
@@ -92,6 +94,10 @@ public class LoginController {
         try {
             if (!form.getPw().equals(form.getCfmPw())) {
                 result.rejectValue("cfmPw", "password.mismatch", "パスワードと確認パスワードが一致しません");
+            }
+            if (registerService.existMemberId(form)) {
+                System.out.print("かぶってますよ");
+                result.rejectValue("memberId", "memberId.exist", "その会員IDは既に存在しています");
             }
             if (result.hasErrors()) {
                 model.addAttribute("registerForm", form);
