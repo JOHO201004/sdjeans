@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.sdjeans.sdjeans_app.cashier_app.Entity.Employee;
 import com.sdjeans.sdjeans_app.cashier_app.Entity.LoginForm;
 import com.sdjeans.sdjeans_app.cashier_app.Entity.ShopStock;
-import com.sdjeans.sdjeans_app.cashier_app.service.EmpLoginService;
-import com.sdjeans.sdjeans_app.cashier_app.service.RegiService;
+import com.sdjeans.sdjeans_app.cashier_app.Service.EmpLoginService;
+import com.sdjeans.sdjeans_app.cashier_app.Service.RegiService;
 
 import jakarta.servlet.http.HttpSession;
 

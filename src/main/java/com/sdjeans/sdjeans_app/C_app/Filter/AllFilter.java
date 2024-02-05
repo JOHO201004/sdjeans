@@ -29,17 +29,16 @@ public class AllFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String requestURI = httpRequest.getRequestURI();
         HttpSession session = httpRequest.getSession();
-        // if (requestURI.contains("/login") || requestURI.contains("/regi")) {
-        //     chain.doFilter(request, response);
-        // } else {
-        //     if (session.getAttribute("memberId") != null) {
-        //         System.out.println("IDが存在するため、Filterが実行されました");
-        //         chain.doFilter(request, response);
-        //     } else {
-        //         httpResponse.sendRedirect("/login");
-        //     }
-        // }
-        chain.doFilter(request, response);
+        if (requestURI.contains("/login") || requestURI.contains("/regi")) {
+            chain.doFilter(request, response);
+        } else {
+            if (session.getAttribute("memberId") != null) {
+                System.out.println("IDが存在するため、Filterが実行されました");
+                chain.doFilter(request, response);
+            } else {
+                httpResponse.sendRedirect("/login");
+            }
+        }
 
     }
 
