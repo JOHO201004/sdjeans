@@ -10,7 +10,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
-import com.sdjeans.sdjeans_app.C_app.Beans.memberId;
 import com.sdjeans.sdjeans_app.C_app.Beans.merchandise;
 import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistory;
 import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistoryMainKey;

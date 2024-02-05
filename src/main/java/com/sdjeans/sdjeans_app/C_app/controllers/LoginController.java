@@ -33,6 +33,11 @@ public class LoginController {
     @Autowired
     ExpireNotificationService expireNotificationService;
 
+    @GetMapping("/push")
+    public String sw() {
+        return "c_temp/push";
+    }
+    
     @GetMapping("/login")
     public String Login(@ModelAttribute LoginForm loginForm, HttpSession session, Model model) {
         model.addAttribute("LoginForm", new LoginForm()); // loginFormをモデルに追加する
@@ -67,7 +72,6 @@ public class LoginController {
         }
     }
 
-
     // 登録画面へ遷移します
     @GetMapping("/regi")
     public String RegisterMember(Model model) {
@@ -78,7 +82,7 @@ public class LoginController {
 
     @GetMapping("/home")
     public String home(HttpSession session) {
-        expireNotificationService.checkAndNotifyExpiration(session);
+        // expireNotificationService.checkAndNotifyExpiration(session);
         return "c_temp/home";
     }
 
@@ -119,5 +123,4 @@ public class LoginController {
             return "c_temp/reMember";
         }
     }
-    // にょ、にょまれー
 }
