@@ -1,14 +1,12 @@
 package com.sdjeans.sdjeans_app.cashier_app;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.sdjeans.sdjeans_app.C_app.CApplication;
-
+@SpringBootApplication
 public class cashierApplication {
-    
-    
     public static void main(String[] args) {
-        SpringApplication.run(CApplication.class, args);
+        SpringApplication.run(cashierApplication.class, args);
     }
 }
 
