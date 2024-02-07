@@ -20,15 +20,32 @@
     <style>
         body {
             font-family: 'Noto Sans JP', sans-serif;
+            padding: 50px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        input[type="submit"] {
+            width: 200px;
+            font-size: 18px;
         }
     </style>
 </head>
 
 <body>
-    <h1>新規登録成功画面</h1>
-    <form method="get" th:action="@{/login}">
-        <input type="submit" value="ログイン画面へ">
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="display-4">新規登録成功画面</h1>
+                <form method="get" th:action="@{/login}">
+                    <button type="submit" class="btn btn-primary btn-lg">ログイン画面へ</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
