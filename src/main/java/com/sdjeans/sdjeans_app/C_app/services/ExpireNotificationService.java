@@ -24,9 +24,6 @@ public class ExpireNotificationService {
     @Autowired
     private purchaseHistoryService purchaseHistoryService;
 
-    @Autowired
-    private SendMailService sendMailService;
-
     private final Set<String> notifiedMerchandise = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
     // フィールドとして宣言することで、多重生成防止
@@ -80,7 +77,6 @@ public class ExpireNotificationService {
             }
             if (!notifyItems.isEmpty()) {
                 session.setAttribute("notifyItems", notifyItems);
-                sendMailService.sendMail(session);
             }
         }
         return notifyItems;
