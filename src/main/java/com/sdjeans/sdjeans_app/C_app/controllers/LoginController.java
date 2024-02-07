@@ -82,7 +82,13 @@ public class LoginController {
     }
 
     @GetMapping("/home")
-    public String home(HttpSession session) {
+    public String home(HttpSession session, Model model) {
+        if(session.getAttribute("checkedPush") != null){
+            model.addAttribute("push", true);
+        }
+        if(session.getAttribute("checkedMail") != null){
+            model.addAttribute("mail", true);
+        }
         return "c_temp/home";
     }
 
