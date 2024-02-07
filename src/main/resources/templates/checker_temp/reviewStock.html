@@ -72,11 +72,29 @@
                     <td th:text="${shopStock.merchName}"></td>
                     <td th:text="${#temporals.format(shopStock.deadline, 'yyyy/MM/dd HH:mm:ss')}"></td>
                     <td th:text="${shopStock.quantity}"></td>
-                    <td th:text="${shopStock.discountRate} + '%'"></td>
+                    <!-- <td th:text="${shopStock.discountRate} + '%'"></td> -->
+                    <td>
+                        <form id="updateForm" method="post" th:action="@{/updateDiscount}">
+                            <select name="newDiscount" class="form-control">
+                                <option value="${shopStock.discountRate}" th:text="${shopStock.discountRate} + '%'"></option>
+                                <option value="0">0%</option>
+                                <option value="30">30%</option>
+                                <option value="50">50%</option>
+                            </select>
+                            <input type="hidden" th:value="${shopStock.merchId}" name="updateMerchId" />
+                            <input type="hidden" th:value="${shopStock.deadline}" name="updateDeadline">
+                            <button type="submit" class="btn btn-primary mt-2">更新</button>
+                        </form>
+                    </td>
+                    
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-primary" onclick="window.history.back()">戻る</button>
+        <form id="backHome" method="get" th:action="@{/home}">
+            <button type="submit" class="btn btn-primary mt-2">メニューへ</button>
+        </form>
+
+        <!-- <button class="btn btn-primary" onclick="window.history.back()">戻る</button> -->
     </div>
 </body>
 

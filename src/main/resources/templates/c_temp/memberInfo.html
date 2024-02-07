@@ -65,7 +65,11 @@
     <p class="label">住所: <span th:text="${member.address}"></span></p>
  
   </div>
+  <form method="get" th:action="@{/home}">
+    <button type="submit" class="btn btn-secondary">メニューへ</button>
+</form>
 </div>
+
 
 </body>
 </html>
