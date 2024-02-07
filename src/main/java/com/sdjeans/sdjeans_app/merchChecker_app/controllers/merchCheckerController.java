@@ -68,6 +68,7 @@ public class merchCheckerController {
         if (employeeService.checkAdmin((LoginForm)session.getAttribute("employee"))) {
             model.addAttribute("admin", true);
         }
+        session.removeAttribute("checkStocksA");
         return "checker_temp/home";
     }
 
