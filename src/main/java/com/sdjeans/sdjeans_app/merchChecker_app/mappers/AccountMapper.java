@@ -1,10 +1,12 @@
 package com.sdjeans.sdjeans_app.merchChecker_app.mappers;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.sdjeans.sdjeans_app.merchChecker_app.Beans.employee;
 import com.sdjeans.sdjeans_app.merchChecker_app.Beans.shopStock;
@@ -27,4 +29,7 @@ public interface AccountMapper {
 
     @Insert("INSERT INTO shopstock VALUES (#{shopId},#{merchId},#{deadline},#{quantity},#{discountRate})")
     public int InsertShopstock(shopStock shopStock);
+
+    @Update("UPDATE shopstock SET discount_rate = #{discountRate} WHERE shop_id = #{shopId} AND merch_id = #{merchId} AND deadline = #{deadline}")
+    public int updateDiscount(int merchId,int discountRate, LocalDateTime deadline,int shopId);
 }

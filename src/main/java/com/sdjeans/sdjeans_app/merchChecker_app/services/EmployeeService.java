@@ -1,5 +1,6 @@
 package com.sdjeans.sdjeans_app.merchChecker_app.services;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +60,12 @@ public class EmployeeService {
             shopStock shopStock = new shopStock(shopId,s.getMerchId(),s.getDeadline(),s.getQuantity(),0);
             accountMapper.InsertShopstock(shopStock);
         }
+    }
+
+    public void changeDiscount(LoginForm loginForm,int merchId,int discountRate, LocalDateTime deadline ){
+        employee employee = accountMapper.findByEmployeeId(loginForm);
+        int shopId = employee.getShopId();
+        accountMapper.updateDiscount(merchId, discountRate, deadline, shopId);
+
     }
 }
