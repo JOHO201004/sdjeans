@@ -16,6 +16,7 @@ import com.sdjeans.sdjeans_app.C_app.Forms.LoginForm;
 import com.sdjeans.sdjeans_app.C_app.Forms.registerForm;
 import com.sdjeans.sdjeans_app.C_app.Services.ExpireNotificationService;
 import com.sdjeans.sdjeans_app.C_app.Services.LoginService;
+import com.sdjeans.sdjeans_app.C_app.Services.SendMailService;
 import com.sdjeans.sdjeans_app.C_app.Services.registerService;
 
 import jakarta.servlet.http.HttpSession;
@@ -35,10 +36,8 @@ public class LoginController {
     @Autowired
     ExpireNotificationService expireNotificationService;
 
-    @GetMapping("/push")
-    public String sw() {
-        return "c_temp/push";
-    }
+    @Autowired
+    SendMailService sendMailService;
     
     @GetMapping("/login")
     public String Login(@ModelAttribute LoginForm loginForm, HttpSession session, Model model) {
@@ -84,7 +83,6 @@ public class LoginController {
 
     @GetMapping("/home")
     public String home(HttpSession session) {
-        // expireNotificationService.checkAndNotifyExpiration(session);
         return "c_temp/home";
     }
 

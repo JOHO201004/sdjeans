@@ -24,12 +24,10 @@ public class ExpireNotificationService {
     @Autowired
     private purchaseHistoryService purchaseHistoryService;
 
-    // @Autowired
-    // private SamplePushController samplePushController;
+    @Autowired
+    private SendMailService sendMailService;
 
     private final Set<String> notifiedMerchandise = Collections.newSetFromMap(new ConcurrentHashMap<>());
-
-    // private final AtomicBoolean isTaskRunning = new AtomicBoolean(false);
 
     // フィールドとして宣言することで、多重生成防止
     private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
@@ -82,6 +80,7 @@ public class ExpireNotificationService {
             }
             if (!notifyItems.isEmpty()) {
                 session.setAttribute("notifyItems", notifyItems);
+                sendMailService.sendMail(session);
             }
         }
         return notifyItems;

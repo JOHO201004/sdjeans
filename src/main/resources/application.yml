@@ -11,8 +11,10 @@ spring:
     #         mode: always
     #         encoding: UTF-8
 
-webPush:
-    fcm_api_key: "key"
+    # mail
+    mail:
+        host: aspmx.l.google.com
+        port: 25
 
 logging:
     level:
