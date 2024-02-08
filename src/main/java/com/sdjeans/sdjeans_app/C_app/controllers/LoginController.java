@@ -19,6 +19,7 @@ import com.sdjeans.sdjeans_app.C_app.Services.LoginService;
 import com.sdjeans.sdjeans_app.C_app.Services.SendMailService;
 import com.sdjeans.sdjeans_app.C_app.Services.registerService;
 
+
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,7 +39,8 @@ public class LoginController {
 
     @Autowired
     SendMailService sendMailService;
-    
+
+
     @GetMapping("/login")
     public String Login(@ModelAttribute LoginForm loginForm, HttpSession session, Model model) {
         model.addAttribute("LoginForm", new LoginForm()); // loginFormをモデルに追加する
@@ -89,6 +91,8 @@ public class LoginController {
         if(session.getAttribute("checkedMail") != null){
             model.addAttribute("mail", true);
         }
+
+        // expireNotificationService.checkAndNotifyExpiration(session);
         return "c_temp/home";
     }
 
@@ -132,5 +136,11 @@ public class LoginController {
             result.addError(new ObjectError("global", e.getMessage()));
             return "c_temp/reMember";
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("memberId");
+        return "redirect:/login";
     }
 }
