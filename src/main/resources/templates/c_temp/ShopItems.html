@@ -116,9 +116,11 @@
       <tbody>
         <!-- 商品在庫リストを表示する部分 -->
         <tr th:each="item : ${shopItems}" class="stock-item">
-          <td th:text="${item.merchId}"></td>
+          <td th:text="${item.merchName}"></td>
           <td th:text="${item.deadline}"></td>
           <td th:text="${item.quantity}"></td>
+          <!-- ここで値段を表示する -->
+          <td th:text="${item.price}"></td>
           <td th:text="${item.discountRate}"></td>
         </tr>
       </tbody>

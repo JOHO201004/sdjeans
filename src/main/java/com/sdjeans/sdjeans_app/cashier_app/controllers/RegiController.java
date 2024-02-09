@@ -1,47 +1,47 @@
 package com.sdjeans.sdjeans_app.cashier_app.Controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.sdjeans.sdjeans_app.cashier_app.Entity.Employee;
 import com.sdjeans.sdjeans_app.cashier_app.Entity.RegiForm;
 import com.sdjeans.sdjeans_app.cashier_app.Entity.ShopStock;
+<<<<<<< HEAD
+import com.sdjeans.sdjeans_app.cashier_app.service.RegiService;
+=======
 import com.sdjeans.sdjeans_app.cashier_app.Service.RegiService;
 
+>>>>>>> abf4142c985f2f85c2d16342e624730342ea6f9a
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class RegiController {
 
-// RegiController.java
-@Autowired
-RegiService regiService;
+    @Autowired
+    RegiService regiService;
 
-// RegiController.java
-@PostMapping("/regiLogic")
-public String regiLogic(@RequestParam("memberId") String memberId, @ModelAttribute RegiForm regiForm, HttpSession session, Model model) {
-    Employee emp = (Employee) session.getAttribute("emp");
-    List<ShopStock> shopItems = regiService.showShopStock(emp.getShopId());
-
-    // 選択された商品をログに出力（オプション）
-    for (ShopStock selectedStock : regiForm.getSelectedStocks()) {
-        System.out.println("選択された商品 - ショップID: " + selectedStock.getShopId() +
-                "、商品ID: " + selectedStock.getMerchId() +
-                "、消費期限: " + selectedStock.getDeadline() +
-                "、数量: " + selectedStock.getQuantity() +
-                "、割引率: " + selectedStock.getDiscountRate());
+    @PostMapping("/regiLogic")
+    public String regiLogic(@RequestParam("memberId") String memberId, @ModelAttribute RegiForm regiForm, HttpSession session, Model model) {
+        for (ShopStock selectedStock : regiForm.getSelectedStocks()) {
+            System.out.println(selectedStock.getSelectedQuantity()+"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+            if (!selectedStock.getSelectedQuantity().equals("0")) {
+                System.out.println("選択された商品 - ショップID: " + selectedStock.getShopId() +
+                        "、商品ID: " + selectedStock.getMerchId() +
+                        "、消費期限: " + selectedStock.getDeadline() +
+                        "、数量: " + selectedStock.getQuantity() +
+                        "、割引率: " + selectedStock.getDiscountRate() +
+                        "、選択個数: " + selectedStock.getSelectedQuantity());
+                // 各商品ごとに更新と挿入を行う
+                regiService.updateShopStocks(selectedStock, memberId);
+                regiService.insertShopStocks(selectedStock, memberId);
+                regiService.deleatShopStocks(selectedStock, memberId);
+            }
+        }
+        // ビジネスロジックを追加
+        // 成功ページにリダイレクトまたはビューを返す
+        return "redirect:/successPage";
     }
-
-    // ビジネスロジックを追加
-
-    // 成功ページにリダイレクトまたはビューを返す
-    return "redirect:/successPage";
-}
 }
 

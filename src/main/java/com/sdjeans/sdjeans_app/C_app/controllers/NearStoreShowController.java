@@ -46,5 +46,4 @@ public class NearStoreShowController {
 
         return "c_temp/nearStoreShow"; // 近くの店舗を表示するページへの遷移を想定
     }
-
 }

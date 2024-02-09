@@ -18,9 +18,10 @@ public interface ShopStockMapper {
     String findByShopName(int shopId);
 
     @Select("SELECT merch_name FROM merch WHERE merch_id = #{merchId}")
-    String findByMerchName(String merchId);
+    String findByMerchName(int merchId);
 
-    
+    @Select("SELECT price FROM merch WHERE merch_id = #{merchId}")
+    int findByMerchPrice(int merchId);
 
 
 }

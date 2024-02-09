@@ -9,11 +9,7 @@ public class ShopStock {
     private String deadline;
     private String quantity;
     private String discountRate;
-    // ... 他のフィールドとゲッターセッター
-
-
-    
+    private String selectedQuantity;
+    // GetterとSetter
 }
-// ShopStock.java
-
 

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sdjeans.sdjeans_app.C_app.Entity.Member;
+import com.sdjeans.sdjeans_app.C_app.Entity.MemberChange;
 import com.sdjeans.sdjeans_app.C_app.Exception.MemberNotFoundException;
 import com.sdjeans.sdjeans_app.C_app.Mappers.accountMapper;
 
@@ -23,5 +24,12 @@ public class MemberInfoShowService{
         }
     
         return member;
+    }
+
+    public int updateMemberInfo(MemberChange data){
+
+
+        return accountMapper.updateMemberInfo(data);
+
     }
 }
