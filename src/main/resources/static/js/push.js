@@ -3,21 +3,21 @@ $(document).ready(() => {
 
     // 1. Permissionの確認
     if (!Push.Permission.has()) {
-        // 2. Permissionのリクエスト
-        Push.Permission.request(() => {
-            console.log("onGranted!!");
-            const status = Push.Permission.get(); // Status
-            $("#my_status").text(status);
+        // // 2. Permissionのリクエスト
+        // Push.Permission.request(() => {
+        //     console.log("onGranted!!");
+        //     const status = Push.Permission.get(); // Status
+        //     $("#my_status").text(status);
 
-            // subscribe 関数を呼び出す
-            subscribe();
-        }, () => {
-            console.log("onDenied!!");
-            const status = Push.Permission.get(); // Status
-            $("#my_status").text(status);
+        //     // subscribe 関数を呼び出す
+        //     subscribe();
+        // }, () => {
+        //     console.log("onDenied!!");
+        //     const status = Push.Permission.get(); // Status
+        //     $("#my_status").text(status);
 
-            // 通知権限がない場合は subscribe 関数を呼び出さない
-        });
+        //     // 通知権限がない場合は subscribe 関数を呼び出さない
+        // });
     } else {
         // 通知権限がすでにある場合は subscribe 関数を呼び出す
         subscribe();
@@ -36,6 +36,7 @@ $(document).ready(() => {
 
                     // データがあれば通知を表示
                     if (data != "") {
+                        console.log("通知成功");
                         showNotification(data);
                     }
 
@@ -61,7 +62,7 @@ $(document).ready(() => {
             vibrate: [100, 100, 100],
             onClick: function () {
                 // 通知がクリックされた場合の設定
-                window.open('https://localhost:8080/purchaseH', '_blank');
+                window.open('https://localhost:8443/purchaseH', '_blank');
             }
         });
     }

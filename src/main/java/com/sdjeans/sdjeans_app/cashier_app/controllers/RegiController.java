@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.cashier_app.controllers;
+package com.sdjeans.sdjeans_app.cashier_app.Controllers;
 
 import java.util.List;
 

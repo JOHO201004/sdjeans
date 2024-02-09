@@ -27,11 +27,13 @@ public class ExpireNotificationService {
     private final Set<String> notifiedMerchandise = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
     // フィールドとして宣言することで、多重生成防止
-    private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+    // private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
 
     @Async
     public void checkAndNotifyExpiration(HttpSession session) {
         String memberId = session.getAttribute("memberId").toString();
+
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
 
         // // 現在時刻を取得
         // LocalDateTime now = LocalDateTime.now();

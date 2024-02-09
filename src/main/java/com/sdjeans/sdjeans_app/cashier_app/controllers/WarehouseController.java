@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.cashier_app.controllers;
+package com.sdjeans.sdjeans_app.cashier_app.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;

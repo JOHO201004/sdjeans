@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.cashier_app.controllers;
+package com.sdjeans.sdjeans_app.cashier_app.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.sdjeans.sdjeans_app.cashier_app.Entity.Employee;
 import com.sdjeans.sdjeans_app.cashier_app.Entity.LoginForm;
-import com.sdjeans.sdjeans_app.cashier_app.Entity.ShopStock;
 import com.sdjeans.sdjeans_app.cashier_app.Service.EmpLoginService;
 import com.sdjeans.sdjeans_app.cashier_app.Service.RegiService;
 
