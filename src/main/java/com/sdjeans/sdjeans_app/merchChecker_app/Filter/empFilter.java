@@ -35,6 +35,7 @@ public class empFilter implements Filter {
                 System.out.println("IDが存在するため、Filterが実行されました");
                 chain.doFilter(request, response);
             } else {
+                System.out.println("employeeがないよ");
                 httpResponse.sendRedirect("/empLogin");
             }
         }

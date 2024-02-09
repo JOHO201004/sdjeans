@@ -62,7 +62,7 @@ $(document).ready(() => {
             vibrate: [100, 100, 100],
             onClick: function () {
                 // 通知がクリックされた場合の設定
-                window.open('https://localhost:8443/purchaseH', '_blank');
+                window.open('https://localhost:8080/purchaseH', '_blank');
             }
         });
     }
