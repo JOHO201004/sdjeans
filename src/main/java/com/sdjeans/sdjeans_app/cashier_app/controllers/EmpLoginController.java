@@ -44,7 +44,6 @@ public class EmpLoginController {
 
             model.addAttribute("shopStock",regiService.showShopStock(emp.getShopId()));
 
-
             return "cashier_temp/regi";
         } else {
             return "cashier_temp/empLogin";
