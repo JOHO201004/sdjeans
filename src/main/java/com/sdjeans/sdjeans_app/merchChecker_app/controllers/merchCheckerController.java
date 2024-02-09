@@ -1,5 +1,6 @@
 package com.sdjeans.sdjeans_app.merchChecker_app.controllers;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistoryQuantityUpdate;
 import com.sdjeans.sdjeans_app.merchChecker_app.forms.LoginForm;
 import com.sdjeans.sdjeans_app.merchChecker_app.forms.StockForm;
 import com.sdjeans.sdjeans_app.merchChecker_app.services.EmployeeService;
@@ -21,18 +24,22 @@ import jakarta.servlet.http.HttpSession;
 public class merchCheckerController {
     @Autowired
     EmployeeService employeeService;
-    
 
     @GetMapping("/empLogin")
     public String Login(@ModelAttribute LoginForm loginForm, HttpSession session, Model model) {
         model.addAttribute("EmployeeLoginForm", new LoginForm()); // loginFormをモデルに追加する
         if (session.getAttribute("employee") != null) {
-            if (employeeService.checkAdmin((LoginForm)session.getAttribute("employee"))) {
+            if (employeeService.checkAdmin((LoginForm) session.getAttribute("employee"))) {
                 model.addAttribute("admin", true);
             }
-            return "checker_temp/home";
+            return "redirect:/home";
         }
         return "checker_temp/login";
+    }
+    @GetMapping("/home")
+    public String home(HttpSession session) {
+        // expireNotificationService.checkAndNotifyExpiration(session);
+        return "checker_temp/home";
     }
 
     @PostMapping("/empLogin")
@@ -41,7 +48,7 @@ public class merchCheckerController {
         model.addAttribute("EmployeeLoginForm", new LoginForm());
         if (employeeService.checkLogin(loginForm)) {
             session.setAttribute("employee", loginForm);
-            if (employeeService.checkAdmin((LoginForm)session.getAttribute("employee"))) {
+            if (employeeService.checkAdmin((LoginForm) session.getAttribute("employee"))) {
                 model.addAttribute("admin", true);
             }
             return "checker_temp/home";
@@ -56,7 +63,7 @@ public class merchCheckerController {
         Object attributeValue = session.getAttribute("checkStocksA");
         LoginForm loginForm = (LoginForm) session.getAttribute("employee");
         ArrayList<StockForm> stockForms = new ArrayList<>();
-        
+
         if (attributeValue instanceof ArrayList<?>) {
             stockForms = (ArrayList<StockForm>) attributeValue;
             employeeService.addStock(stockForms, loginForm);
@@ -64,10 +71,11 @@ public class merchCheckerController {
             System.out.println("ないよっ");
             return "redirect:/check";
         }
-        
-        if (employeeService.checkAdmin((LoginForm)session.getAttribute("employee"))) {
+
+        if (employeeService.checkAdmin((LoginForm) session.getAttribute("employee"))) {
             model.addAttribute("admin", true);
         }
+        session.removeAttribute("checkStocksA");
         return "checker_temp/home";
     }
 
@@ -84,7 +92,7 @@ public class merchCheckerController {
         System.out.println(stockForm);
         if (session.getAttribute("checkStocksA") != null) {
             ArrayList<StockForm> shopStocksA = (ArrayList<StockForm>) session.getAttribute("checkStocksA");
-            for(int i = 0;shopStocksA.size() > i;i++){
+            for (int i = 0; shopStocksA.size() > i; i++) {
                 shopStocks.add(shopStocksA.get(i));
             }
 
@@ -101,5 +109,30 @@ public class merchCheckerController {
         LoginForm loginForm = (LoginForm) session.getAttribute("employee");
         model.addAttribute("shopStocks", employeeService.getStock(loginForm));
         return "checker_temp/reviewStock";
+    }
+
+    @PostMapping("/updateDiscount")
+    public String updatePurchaseHistory(
+            @RequestParam("updateMerchId") Integer merchId,
+            @RequestParam("updateDeadline") LocalDateTime deadline,
+            @RequestParam("newDiscount") Integer discountRate,
+            Model model,
+            HttpSession session) {
+                LoginForm loginForm = (LoginForm) session.getAttribute("employee");
+        System.out.println("ここはあっぷでーとです" + "商品" + merchId + "期限" + deadline + "割引率" + discountRate);
+        employeeService.changeDiscount(loginForm, merchId, discountRate, deadline);
+        model.addAttribute("shopStocks", employeeService.getStock(loginForm));
+        return "redirect:/reviewStock";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("employee");
+        return "redirect:/EmpLogin";
+    }
+
+    public static boolean isPast(LocalDateTime dateTime) {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        return dateTime.isBefore(currentDateTime);
     }
 }

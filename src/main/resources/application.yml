@@ -11,8 +11,10 @@ spring:
     #         mode: always
     #         encoding: UTF-8
 
-webPush:
-    fcm_api_key: "key"
+    # mail
+    mail:
+        host: aspmx.l.google.com
+        port: 25
 
 logging:
     level:
@@ -25,3 +27,10 @@ logging:
 mybatis:
     configuration:
         map-underscore-to-camel-case: true
+
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:localhost.p12
+    key-store-type: PKCS12
+    key-store-password: changeit

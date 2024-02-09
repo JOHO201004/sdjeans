@@ -53,16 +53,21 @@
             <form method="get" th:action="@{/check}">
                 <button type="submit" class="btn btn-primary">在庫☑</button>
             </form>
-            <div th:if="${admin}">
-                <form method="get" th:action="@{/employeeManagement}">
-                    <button type="submit" class="btn btn-success">従業員管理</button>
-                </form>
+            <!-- <div th:if="${admin}"> -->
+            <div>
+                <!-- <form method="get" th:action="@{/employeeManagement}"> -->
+                <button type="submit" class="btn btn-success">従業員管理</button>
+                <!-- </form> -->
             </div>
             <div>
                 <form method="get" th:action="@{/reviewStock}">
                     <button type="submit" class="btn btn-info">在庫確認</button>
                 </form>
             </div>
+            <form method="get" th:action="@{/logout}">
+                <button type="submit" class="btn btn-dark">ログアウト</button>
+            </form>
+
         </div>
     </div>
 </body>

@@ -25,13 +25,6 @@ public class LoginService {
             throw new OptimisticLockingFailureException(
                     messageSource.getMessage("error.bad", new String[] { "0件見つかったよ" }, Locale.JAPANESE));
         }
-        System.out.println("サービスの中です"+foundAccount.getId());
-                System.out.println("サービスの中です"+foundAccount.getId());
-        // if (foundAccount > 1) {
-        // throw new RuntimeException(
-        // messageSource.getMessage("error.runtime", new String[] { "二件以上検出されました" },
-        // Locale.JAPANESE));
-        // }
         return foundAccount;
     }
 

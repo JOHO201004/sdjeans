@@ -78,7 +78,14 @@
       <input type="submit" class="button" value="修正">
     </form>
   </div>
+  <form method="get" th:action="@{/home}">
+    <button type="submit" class="btn btn-secondary">メニューへ</button>
+</form>
 </div>
+<script th:src="@{/js/setNotification.js}" type=text/javascript></script>
+<script th:src="@{//code.jquery.com/jquery-3.6.1.min.js}"></script>
+<script th:src="@{//cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js}"></script>
+<script th:src="@{/js/push.js}" type=text/javascript></script>
 
 </body>
 </html>

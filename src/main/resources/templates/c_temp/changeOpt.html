@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>通知許可確認</title>
+  <script>
+
+    // Notification対応しているかどうか
+    if (window.Notification) {      
+      if (Notification.permission === 'default') {
+
+        alert('ブラウザの通知設定をONにしてください');
+
+        // 許可が取れていない場合はNotificationの許可を取る
+        Notification.requestPermission(function (result) {
+          if (result === 'denied') {
+
+            alert('通知の許可に失敗しました。もう一度設定しなおしてください。');
+
+          } else if (result === 'default') {
+
+            alert('通知可能かどうか不明です。もう一度設定しなおしてください。');
+
+          } else if (result === 'granted') {
+
+            alert('ブラウザの通知設定がONになりました！');
+          }
+        })
+      }
+    } else {
+      alert('Notificationは無効です');
+    }
+
+  </script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 60%;
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #3498db;
+      margin-bottom: 20px;
+      font-size: 3em;
+    }
+
+    .status-title {
+      font-size: 1.7em;
+      /* タイトルのフォントサイズを調整 */
+      margin-bottom: 10px;
+    }
+
+    .status {
+      margin-top: 20px;
+      /* 余白を調整 */
+      display: flex;
+      flex-direction: column;
+      /* 列方向に配置 */
+      align-items: center;
+      justify-content: center;
+      /* 中央寄せを追加 */
+    }
+
+    .label {
+      font-weight: bold;
+      color: #555;
+      font-size: 1.7em;
+      margin-bottom: 10px;
+      /* ラベル間の余白を追加 */
+    }
+
+    .message-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      /* メッセージ間の余白を追加 */
+    }
+
+    .message {
+      color: #333;
+      font-weight: normal;
+      font-size: 1.5em;
+    }
+
+    .btn-container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 1.2em;
+    }
+
+    .btn-secondary {
+      background-color: #6c757d;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>通知の許可状態が変更されました！</h1>
+    <h1 class="status-title">現在の許可状態は以下のようになっています</h1>
+
+    <div class="status">
+      <div class="label">プッシュ通知:</div>
+      <div class="message-container">
+        <div class="message" th:if="${push}">許可しています</div>
+        <div class="message" th:unless="${push}">許可していません</div>
+      </div>
+
+      <div class="label">メールでお知らせ:</div>
+      <div class="message-container">
+        <div class="message" th:if="${mail}">許可しています</div>
+        <div class="message" th:unless="${mail}">許可していません</div>
+      </div>
+    </div>
+
+    <div class="btn-container">
+      <form method="get" th:action="@{/notification}">
+        <button type="submit" class="btn btn-secondary">通知メニューへ戻る</button>
+      </form>
+      <form method="get" th:action="@{/home}">
+        <button type="submit" class="btn btn-secondary">ホームへ戻る</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

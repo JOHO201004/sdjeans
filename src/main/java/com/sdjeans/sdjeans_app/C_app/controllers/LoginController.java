@@ -16,7 +16,9 @@ import com.sdjeans.sdjeans_app.C_app.Forms.LoginForm;
 import com.sdjeans.sdjeans_app.C_app.Forms.registerForm;
 import com.sdjeans.sdjeans_app.C_app.Services.ExpireNotificationService;
 import com.sdjeans.sdjeans_app.C_app.Services.LoginService;
+import com.sdjeans.sdjeans_app.C_app.Services.SendMailService;
 import com.sdjeans.sdjeans_app.C_app.Services.registerService;
+
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +36,10 @@ public class LoginController {
 
     @Autowired
     ExpireNotificationService expireNotificationService;
+
+    @Autowired
+    SendMailService sendMailService;
+
 
     @GetMapping("/login")
     public String Login(@ModelAttribute LoginForm loginForm, HttpSession session, Model model) {
@@ -78,8 +84,15 @@ public class LoginController {
     }
 
     @GetMapping("/home")
-    public String home(HttpSession session) {
-        expireNotificationService.checkAndNotifyExpiration(session);
+    public String home(HttpSession session, Model model) {
+        if(session.getAttribute("checkedPush") != null){
+            model.addAttribute("push", true);
+        }
+        if(session.getAttribute("checkedMail") != null){
+            model.addAttribute("mail", true);
+        }
+
+        // expireNotificationService.checkAndNotifyExpiration(session);
         return "c_temp/home";
     }
 
@@ -124,10 +137,10 @@ public class LoginController {
             return "c_temp/reMember";
         }
     }
-    // にょ、にょまれー
-    @GetMapping("/にょにょまれー")
-    public String nyo() {
-        return "oasobi_temp/follinSnow";
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("memberId");
+        return "redirect:/login";
     }
-    
 }

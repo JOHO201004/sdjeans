@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.cashier_app.controllers;
+package com.sdjeans.sdjeans_app.cashier_app.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.sdjeans.sdjeans_app.cashier_app.Entity.RegiForm;
 import com.sdjeans.sdjeans_app.cashier_app.Entity.ShopStock;
+<<<<<<< HEAD
 import com.sdjeans.sdjeans_app.cashier_app.service.RegiService;
+=======
+import com.sdjeans.sdjeans_app.cashier_app.Service.RegiService;
+
+>>>>>>> abf4142c985f2f85c2d16342e624730342ea6f9a
 import jakarta.servlet.http.HttpSession;
 
 @Controller
