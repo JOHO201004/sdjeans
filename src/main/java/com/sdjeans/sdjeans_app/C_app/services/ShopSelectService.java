@@ -26,12 +26,18 @@ public class ShopSelectService {
     }
 
 
-    public List<ShopStock> merchIdChange(List<ShopStock> changeList) {
+    public String merchIdChange(String id) {
         // 店舗IDを使用して商品在庫リストをデータベースから取得するロジック
-        for(ShopStock item:changeList){
-            item.setMerchId(shopStockMapper.findByMerchName(item.getMerchId()));
-        }
-         return changeList;
+        // for(ShopStock item:changeList){
+        //     item.setMerchId(shopStockMapper.findByMerchName(item.getMerchId()));
+        // }
+        //  return changeList;
+        
+        return shopStockMapper.findByMerchName(Integer.parseInt(id));
+    }
+
+    public int getPrice(int merchId){
+        return shopStockMapper.findByMerchPrice(merchId);
     }
 
 

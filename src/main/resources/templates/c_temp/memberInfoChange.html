@@ -44,6 +44,11 @@
       font-weight: normal;
       font-size: 1.5em; /* 追加: フォントサイズを大きく */
     }
+    input[type="text"] {
+      width: 80%; 
+      padding: 10px; 
+      font-size: 1.5em; 
+    }
     .button {
       background-color: #3498db;
       color: #fff;
@@ -60,25 +65,24 @@
 </head>
 <body>
 
-<div class="container">
-  <h1>会員情報</h1>
-  
-  <div class="member-info">
-    <p class="label">メンバーID: <span th:text="${memberId}"></span></p>
-  </div>
-
-  <div class="member-info">
-    <p class="label">名前: <span th:text="${member.name}"></span></p>
-  </div>
-
-  <div class="member-info">
-    <p class="label">住所: <span th:text="${member.address}"></span></p> 
-
-    <form method="post" th:action="@{/memberInfoRerite}">
-      <input type="submit" class="button" value="修正">
+  <div class="container">
+    <h1>会員情報変更画面</h1>
+    <form th:action="@{/memberChange}" method="post" th:object="${memberChange}">
+      <div class="member-info">
+        <input type="hidden" name="memberId" th:value="${memberId}">
+        
+        <p class="label">メンバーID: <span th:text="${memberId}"></span></p>
+      </div>
+      <div class="member-info">
+        <p class="label">名前: <span><input type="text" name="name" th:value="${member.name}" id="${member.name}"></span></p>
+      </div>
+      <div class="member-info">
+        <p class="label">住所: <span><input type="text" name="address" th:value="${member.address}" id="${member.address}"></span></p>
+      </div>
+      <input type="submit" class="button" value="確定">
     </form>
   </div>
-</div>
+  
 
 </body>
 </html>
