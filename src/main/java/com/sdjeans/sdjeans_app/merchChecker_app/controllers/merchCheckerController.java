@@ -51,7 +51,7 @@ public class merchCheckerController {
             if (employeeService.checkAdmin((LoginForm) session.getAttribute("employee"))) {
                 model.addAttribute("admin", true);
             }
-            return "checker_temp/home";
+            return "redirect:/home";
         } else {
             model.addAttribute("bad", "パスワードかIDが違います");
             return "checker_temp/login";
