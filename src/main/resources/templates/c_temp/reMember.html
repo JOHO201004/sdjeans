@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
-    <title>新規登録画面</title>
+    <title>新規登録</title>
 
     <style>
         body {
@@ -42,7 +42,7 @@
 
 <body>
     <div class="container registration-container">
-        <h1 class="text-center mb-4">新規登録画面</h1>
+        <h1 class="text-center mb-4">新規登録</h1>
 
         <form class="registration-form" method="post" th:object="${registerForm}" th:action="@{/regiCfm}">
             <div class="mb-3">
@@ -67,7 +67,7 @@
                 <input type="password" th:field="*{pw}" class="form-control" id="pw" required />
             </div>
             <div class="mb-3">
-                <label for="cfmPw" class="form-label">確認パスワード:</label>
+                <label for="cfmPw" class="form-label">確認用パスワード:</label>
                 <input type="password" th:field="*{cfmPw}" class="form-control" id="cfmPw" required />
                 <div class="text-danger" th:if="${#fields.hasErrors('cfmPw')}" th:errors="${registerForm.cfmPw}"></div>
             </div>
