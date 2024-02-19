@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.merchChecker_app.mappers;
+package com.sdjeans.sdjeans_app.merchChecker_app.Mappers;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
