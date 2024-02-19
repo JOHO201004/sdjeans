@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.merchChecker_app.services;
+package com.sdjeans.sdjeans_app.merchChecker_app.Services;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import com.sdjeans.sdjeans_app.merchChecker_app.Beans.employee;
 import com.sdjeans.sdjeans_app.merchChecker_app.Beans.shopStock;
 import com.sdjeans.sdjeans_app.merchChecker_app.Beans.shopStockPlusName;
+import com.sdjeans.sdjeans_app.merchChecker_app.Mappers.AccountMapper;
 import com.sdjeans.sdjeans_app.merchChecker_app.forms.LoginForm;
 import com.sdjeans.sdjeans_app.merchChecker_app.forms.StockForm;
-import com.sdjeans.sdjeans_app.merchChecker_app.mappers.AccountMapper;
 
 @Service
 public class EmployeeService {
