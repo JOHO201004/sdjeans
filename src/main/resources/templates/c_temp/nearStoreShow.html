@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
       justify-content: center;
       height: 100vh;
     }
+
     .container {
       width: 60%;
       background-color: #ffffff;
@@ -23,14 +25,17 @@
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
+
     h1 {
       color: #3498db;
       margin-bottom: 20px;
     }
+
     .near-stores {
       margin-top: 30px;
       text-align: left;
     }
+
     .store-item {
       display: flex;
       justify-content: space-between;
@@ -38,46 +43,69 @@
       border-bottom: 1px solid #ddd;
       padding-bottom: 10px;
     }
+
     .store-item button {
-  margin-left: auto;
-  padding: 10px 20px;
-  background-color: #3498db; /* ボタンの背景色 */
-  color: #ffffff; /* ボタンの文字色 */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* ホバー時のアニメーション */
-}
+      margin-left: auto;
+      padding: 10px 20px;
+      background-color: #3498db;
+      /* ボタンの背景色 */
+      color: #ffffff;
+      /* ボタンの文字色 */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      /* ホバー時のアニメーション */
+    }
 
-.store-item button:hover {
-  background-color: #2980b9; /* ホバー時の背景色 */
-}
+    .store-item button:hover {
+      background-color: #2980b9;
+      /* ホバー時の背景色 */
+    }
 
+    /* 追加 */
+    .menu-button {
+      background-color: #3498db;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-button:hover {
+      background-color: #2980b9;
+    }
   </style>
 </head>
+
 <body>
 
-<div class="container">
-  <h1>近くの店舗一覧</h1>
-  
-  <div class="near-stores">
-    <div th:each="store : ${nearStores}" class="store-item">
-      <form method="post" th:action="@{/selectShopShowItem}" th:object="${selectShopForm}">
-        <input type="hidden" name="shopId" th:value="${store.shopId}" />
-        <p>店舗ID: <span th:text="${store.shopId}"></span></p>
-        <p>店舗名: <span th:text="${store.shopName}"></span></p>
-        <p>住所: <span th:text="${store.address}"></span></p><br>
-        <button type="submit" class="btn btn-primary">店舗在庫</button>
-      </form>
+  <div class="container">
+    <h1>近くの店舗一覧</h1>
+
+    <div class="near-stores">
+      <div th:each="store : ${nearStores}" class="store-item">
+        <form method="post" th:action="@{/selectShopShowItem}" th:object="${selectShopForm}">
+          <input type="hidden" name="shopId" th:value="${store.shopId}" />
+          <p>店舗ID: <span th:text="${store.shopId}"></span></p>
+          <p>店舗名: <span th:text="${store.shopName}"></span></p>
+          <p>住所: <span th:text="${store.address}"></span></p><br>
+          <button type="submit" class="btn btn-primary">店舗在庫</button>
+        </form>
+      </div>
     </div>
-  </div>        <form method="get" th:action="@{/home}">
-    <button type="submit" class="btn btn-secondary">メニューへ</button>
-</form>
-</div>
-<script th:src="@{/js/setNotification.js}" type=text/javascript></script>
-<script th:src="@{//code.jquery.com/jquery-3.6.1.min.js}"></script>
-<script th:src="@{//cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js}"></script>
-<script th:src="@{/js/push.js}" type=text/javascript></script>
+    <form method="get" th:action="@{/home}">
+      <!-- 修正された部分 -->
+      <button type="submit" class="menu-button">メニューへ</button>
+    </form>
+  </div>
+  <script th:src="@{/js/setNotification.js}" type=text/javascript></script>
+  <script th:src="@{//code.jquery.com/jquery-3.6.1.min.js}"></script>
+  <script th:src="@{//cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js}"></script>
+  <script th:src="@{/js/push.js}" type=text/javascript></script>
 
 </body>
+
 </html>

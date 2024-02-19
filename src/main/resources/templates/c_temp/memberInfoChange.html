@@ -66,12 +66,12 @@
 <body>
 
   <div class="container">
-    <h1>会員情報変更画面</h1>
+    <h1>会員情報編集</h1>
     <form th:action="@{/memberChange}" method="post" th:object="${memberChange}">
       <div class="member-info">
         <input type="hidden" name="memberId" th:value="${memberId}">
         
-        <p class="label">メンバーID: <span th:text="${memberId}"></span></p>
+        <p class="label">ID: <span th:text="${memberId}"></span></p>
       </div>
       <div class="member-info">
         <p class="label">名前: <span><input type="text" name="name" th:value="${member.name}" id="${member.name}"></span></p>
