@@ -1,15 +1,15 @@
-package com.sdjeans.sdjeans_app.merchChecker_app.forms;
+// package com.sdjeans.sdjeans_app.merchChecker_app.Forms;
 
-import java.time.LocalDateTime;
+// import java.time.LocalDateTime;
 
-import lombok.Data;
+// import lombok.Data;
 
-@Data
-public class StockForm {
-    // 商品ID
-    private Integer merchId;
-    // 期限
-    private LocalDateTime deadline;
-    //数量
-    private Integer quantity;
-}
+// @Data
+// public class StockForm {
+//     // 商品ID
+//     private Integer merchId;
+//     // 期限
+//     private LocalDateTime deadline;
+//     //数量
+//     private Integer quantity;
+// }
