@@ -75,8 +75,8 @@
                     <!-- <td th:text="${shopStock.discountRate} + '%'"></td> -->
                     <td>
                         <form id="updateForm" method="post" th:action="@{/updateDiscount}">
-                            <select name="newDiscount" class="form-control">
-                                <option value="${shopStock.discountRate}" th:text="${shopStock.discountRate} + '%'"></option>
+                            <select name="newDiscount" class="form-control" id="discountSelect">
+                                <option value="${shopStock.discountRate}" th:text="${shopStock.discountRate}    + '%'"></option>
                                 <option value="0">0%</option>
                                 <option value="30">30%</option>
                                 <option value="50">50%</option>
@@ -99,3 +99,4 @@
 </body>
 
 </html>
+
