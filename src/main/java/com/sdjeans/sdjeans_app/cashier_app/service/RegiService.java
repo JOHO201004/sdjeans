@@ -32,6 +32,7 @@ public class RegiService {
         }
     }
     
+
     public int notInsertShopStocks(ShopStock selectedStock,String memberId) {
         return regiMapper.findBBBayList(selectedStock, selectedStock.getSelectedQuantity(), memberId);
     }

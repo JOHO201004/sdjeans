@@ -1,6 +1,8 @@
 package com.sdjeans.sdjeans_app.cashier_app.Mappers;
 
+
 import java.util.List;
+
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -9,8 +11,11 @@ import org.apache.ibatis.annotations.Update;
 
 import com.sdjeans.sdjeans_app.cashier_app.Entity.ShopStock;
 
+
 @Mapper
 public interface RegiMapper {
+
+
 
     @Select("SELECT * FROM shopStock WHERE shop_id = #{shopId}")
     public List<ShopStock> findByShopStock(String shopId);
@@ -24,7 +29,9 @@ public interface RegiMapper {
     @Update("UPDATE purchaseHistory SET quantity = CAST(quantity AS SIGNED) + CAST(#{selectedQuantity} AS SIGNED) WHERE member_id = #{memberId} AND merch_id = #{selectedStock.merchId} AND deadline = #{selectedStock.deadline}")
     public int findBBBayList(ShopStock selectedStock, String selectedQuantity, String memberId);
 
+
     @Select("DELETE FROM shopStock WHERE quantity = 0")
     public Integer findBBBBayList(ShopStock selectedStock, String memberId); // 引数を追加
 }
+
  

@@ -1,4 +1,4 @@
-package com.sdjeans.sdjeans_app.merchChecker_app.controllers;
+package com.sdjeans.sdjeans_app.merchChecker_app.Controllers;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sdjeans.sdjeans_app.C_app.Beans.purchaseHistoryQuantityUpdate;
+import com.sdjeans.sdjeans_app.merchChecker_app.Services.EmployeeService;
 import com.sdjeans.sdjeans_app.merchChecker_app.forms.LoginForm;
 import com.sdjeans.sdjeans_app.merchChecker_app.forms.StockForm;
-import com.sdjeans.sdjeans_app.merchChecker_app.services.EmployeeService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -51,7 +51,7 @@ public class merchCheckerController {
             if (employeeService.checkAdmin((LoginForm) session.getAttribute("employee"))) {
                 model.addAttribute("admin", true);
             }
-            return "checker_temp/home";
+            return "redirect:/home";
         } else {
             model.addAttribute("bad", "パスワードかIDが違います");
             return "checker_temp/login";
@@ -130,6 +130,13 @@ public class merchCheckerController {
         session.removeAttribute("employee");
         return "redirect:/EmpLogin";
     }
+
+    @GetMapping("removeStockData")
+    public String removeStockData(HttpSession session) {
+        session.removeAttribute("checkStocksA");
+        return "checker_temp/home";
+    }
+    
 
     public static boolean isPast(LocalDateTime dateTime) {
         LocalDateTime currentDateTime = LocalDateTime.now();

@@ -14,8 +14,10 @@ import com.sdjeans.sdjeans_app.cashier_app.Service.RegiService;
 
 import jakarta.servlet.http.HttpSession;
 
+
 @Controller
 public class RegiController {
+
 
     @Autowired
     RegiService regiService;
@@ -47,4 +49,5 @@ public class RegiController {
         return "cashier_temp/successRegiLogic";
     }
 }
+
 
