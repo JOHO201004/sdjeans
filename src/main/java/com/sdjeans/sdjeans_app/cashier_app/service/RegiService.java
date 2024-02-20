@@ -35,19 +35,15 @@ public class RegiService {
     public int notInsertShopStocks(ShopStock selectedStock,String memberId) {
         return regiMapper.findBBBayList(selectedStock, selectedStock.getSelectedQuantity(), memberId);
     }
-public int deleatShopStocks(ShopStock selectedStock, String memberId) {
-    Integer result = regiMapper.findBBBBayList(selectedStock, memberId); // メソッドの引数を追加
-    if (result == null) {
-        System.out.println("error");
-        // nullの場合の処理を行う
-        return 0; // 仮の戻り値です。適切な値に置き換えてください。
-    }
-    // resultを適切な値に変換して返す
-}
 
-// RegiMaepperインタフェースにfindBBBBayListメソッドの実装を追加
-public interface RegiMaepper {
-    // 他のメソッドと同様に、引数を適切に定義してください
-    Integer findBBBBayList(ShopStock selectedStock, String memberId);
-}
+    public int deleatShopStocks(ShopStock selectedStock, String memberId) {
+        Integer result = regiMapper.findBBBBayList(selectedStock, memberId);
+        if (result == null) {
+            System.out.println("findBBBBayList returned null");
+            // nullの場合の処理を行う
+            return 0; // 仮の戻り値です。適切な値に置き換えてください。
+        }
+        // resultを適切な値に変換して返す
+        return 1; // 仮の戻り値です。適切な値に置き換えてください。
+    }
 }
